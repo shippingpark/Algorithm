@@ -41,7 +41,8 @@
 		CEA708A8294C770D00C7B086 = {
 			isa = PBXGroup;
 			children = (
-				CEA708B3294C770D00C7B086 /* Algorithm */,
+				CEA708BB294C772700C7B086 /* 백준 */,
+				CEA708B3294C770D00C7B086 /* 프로그래머스 */,
 				CEA708B2294C770D00C7B086 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +55,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CEA708B3294C770D00C7B086 /* Algorithm */ = {
+		CEA708B3294C770D00C7B086 /* 프로그래머스 */ = {
 			isa = PBXGroup;
 			children = (
 				CEA708B4294C770D00C7B086 /* main.swift */,
 			);
-			path = Algorithm;
+			name = "프로그래머스";
+			path = "프로그래머스";
+			sourceTree = "<group>";
+		};
+		CEA708BB294C772700C7B086 /* 백준 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "백준";
+			path = "백준";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
