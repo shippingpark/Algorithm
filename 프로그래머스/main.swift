@@ -27,12 +27,12 @@ import Foundation
 func solution(_ k:Int, _ d:Int) -> Int64 {
     var result:Int64 = 0
     var point:[Int] = []
-    //가능한 k배수 좌표 모음 (x y 관계 없음)
-    for i in 0...d {
-        var x = k*i
-        guard x <= d else {break}
-        point.append(x)
-    } //최소 0으로 확정, 최댓값 구하는 과정
+    
+    for i in stride(from: 0, through: d, by: k){
+        point.append(i)
+    }
+    
+    //최소 0으로 확정, 최댓값 구하는 과정
     let fullLineCount:Int = point.count
     
     //줄 당 몇 개 인지 찾기
