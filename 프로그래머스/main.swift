@@ -1,71 +1,29 @@
 
 
-//점 찍기
+//콜라문제
 
 import Foundation
 
 
-//시간 에러
-//func solution(_ k:Int, _ d:Int) -> Int64 {
-//    var point:Int64 = 0
-//
-//    for i in 0...d {
-//        var x = k*i
-//        for j in 0...d {
-//            var y = k*j
-//            if x*x + y*y <= d*d {
-//                point += 1
-//            }
-//        }
-//    }
-//    return point
-//}
-
-
-//중첩 for 문 피하기
-
-func solution(_ k:Int, _ d:Int) -> Int64 {
-    var result:Int64 = 0
-    var point:[Int] = []
+//콜라 a 개 당 b 개 받을 수 있음. 현재 n 개 소유중
+func solution(_ a:Int, _ b:Int, _ n:Int) -> Int {
+    var cola = n //현재 콜라 병 수
+    var cellBottles = a //판매한 병 수
+    var restBottles = 0 //남는 병 수
+    var result = 0 //얻은 콜라 수
     
-    for i in stride(from: 0, through: d, by: k){
-        point.append(i)
+    while cola >= a {
+        cellBottles = cola/a
+        restBottles = cola%a
+        result += b * cellBottles //받아 본 꽉찬 콜라
+        cola = b * cellBottles + restBottles //빈 병 수
     }
     
-    //최소 0으로 확정, 최댓값 구하는 과정
-    let fullLineCount:Int = point.count
-    
-    //줄 당 몇 개 인지 찾기
-    for eachPoint in point {
-        var x = point.last!
-        var y = eachPoint
-        var outPoint:Int = 0
-        //피타고라스 밖의 점이면
-        while !checkInnerCircle(x: x, y: y, d: d){
-//            print("실패 좌표 (\(x),\(y))이고 아웃 카운트는 \(outPoint)")
-            x -= k
-            guard x >= 0 else {x += k; return result}
-            outPoint += 1
-        }
-        
-//        print("성공 좌표 (\(x),\(y))이고 아웃 카운트는 \(outPoint)")
-        result += Int64(fullLineCount - outPoint)
-    }
-
     return result
 }
 
 
-func checkInnerCircle(x:Int, y:Int, d:Int) -> Bool {
-    var check:Bool = false
-    if x*x + y*y <= d*d {
-        check = true
-    }
-    return check
-}
 
-
-
-print(solution(2, 4))//6
-print(solution(1, 5))//26
+print(solution(2, 1, 20))//19
+print(solution(3, 1, 20))//9
 
