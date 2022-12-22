@@ -1,6 +1,6 @@
 
 
-//LV1.짝수와 홀수
+//  LV1.짝수와 홀수
 
 import Foundation
 

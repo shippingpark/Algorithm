@@ -1,6 +1,6 @@
 
 
-//점 찍기
+//  점 찍기
 
 import Foundation
 
