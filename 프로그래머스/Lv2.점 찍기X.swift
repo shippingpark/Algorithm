@@ -5,24 +5,24 @@
 import Foundation
 
 
-//시간 에러
-//func solution(_ k:Int, _ d:Int) -> Int64 {
-//    var point:Int64 = 0
-//
-//    for i in 0...d {
-//        var x = k*i
-//        for j in 0...d {
-//            var y = k*j
-//            if x*x + y*y <= d*d {
-//                point += 1
-//            }
-//        }
-//    }
-//    return point
-//}
+// MARK: - 초기 답안 (실패 : 시간 초과)
+func solution(_ k:Int, _ d:Int) -> Int64 {
+    var point:Int64 = 0
+
+    for i in 0...d {
+        var x = k*i
+        for j in 0...d {
+            var y = k*j
+            if x*x + y*y <= d*d {
+                point += 1
+            }
+        }
+    }
+    return point
+}
 
 
-//중첩 for 문 피하기
+// MARK: - 중첩 for 문 피하기
 
 func solution(_ k:Int, _ d:Int) -> Int64 {
     var result:Int64 = 0

@@ -4,20 +4,22 @@
 
 
 import Foundation
-//
-//func solution(_ s:String) -> Bool{
-//    var count:Int = 0
-//
-//    for char in s {
-//        if char == "p" || char == "P" {
-//            count += 1
-//        }
-//        else if char == "y" || char == "Y" {
-//            count -= 1
-//        }
-//    }
-//    return count == 0
-//}
+
+// MARK: - 초기 답안
+
+func solution(_ s:String) -> Bool{
+    var count:Int = 0
+
+    for char in s {
+        if char == "p" || char == "P" {
+            count += 1
+        }
+        else if char == "y" || char == "Y" {
+            count -= 1
+        }
+    }
+    return count == 0
+}
 
 
 

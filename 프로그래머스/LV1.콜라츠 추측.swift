@@ -8,21 +8,23 @@
 
 import Foundation
 
-//func solution(_ num:Int) -> Int {
-//    var inputNum = num
-//    var count = 0
-//    while inputNum != 1 {
-//        guard count < 500 else { return -1 }
-//        count += 1
-//        if inputNum%2 == 0 {
-//            inputNum /= 2
-//        }
-//        else {
-//            inputNum = 3*inputNum + 1
-//        }
-//    }
-//    return count
-//}
+// MARK: - 초기 답안
+
+func solution(_ num:Int) -> Int {
+    var inputNum = num
+    var count = 0
+    while inputNum != 1 {
+        guard count < 500 else { return -1 }
+        count += 1
+        if inputNum%2 == 0 {
+            inputNum /= 2
+        }
+        else {
+            inputNum = 3*inputNum + 1
+        }
+    }
+    return count
+}
 
 
 // MARK: - 가독성 개선 (삼항 연산자)
