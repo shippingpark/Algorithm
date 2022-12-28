@@ -10,9 +10,6 @@
 		CE6794D2295927D90077005E /* LV1.x만큼 간격이 있는 n개의 숫자.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6794D1295927D90077005E /* LV1.x만큼 간격이 있는 n개의 숫자.swift */; };
 		CEA708C1294D519D00C7B086 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA708BC294C77AB00C7B086 /* File.swift */; };
 		CEE4C488295BCFB000C87543 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4C487295BCFB000C87543 /* main.swift */; };
-		CEE4C48A295BCFC500C87543 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4C489295BCFC500C87543 /* File.swift */; };
-		CEE4C48C295BCFCD00C87543 /* File2.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4C48B295BCFCD00C87543 /* File2.swift */; };
-		CEE4C48E295BCFD400C87543 /* File3.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4C48D295BCFD400C87543 /* File3.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -206,11 +203,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEA708C1294D519D00C7B086 /* File.swift in Sources */,
-				CEE4C48E295BCFD400C87543 /* File3.swift in Sources */,
-				CEE4C48A295BCFC500C87543 /* File.swift in Sources */,
 				CEE4C488295BCFB000C87543 /* main.swift in Sources */,
 				CE6794D2295927D90077005E /* LV1.x만큼 간격이 있는 n개의 숫자.swift in Sources */,
-				CEE4C48C295BCFCD00C87543 /* File2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
