@@ -1,33 +1,22 @@
 //
-//  File2.swift
+//  File.swift
 //  Algorithm
 //
-//  Lv1. 예산
+//  //Lv1. 약수의 개수와 덧셈
 //
 
 import Foundation
 
-// MARK: - sorted() 안 쓰고 풀기
+// MARK: - 실패 (signal: illegal instruction (core dumped))
 
-func solution(_ d:[Int], _ budget:Int) -> Int {
-    var nowBuget = budget //잔여예산
-    var nowd = d //남은 배열
-    var count = Int() //처리 부서 수
-    
-    while nowBuget >= 0 {
-        guard nowd.count != 0 else { return count }
-        let minMoney = nowd.min()!
-        let indexOfMin = nowd.firstIndex(of: minMoney)!
-        print(nowd)
-        print(minMoney)
-        nowBuget -= minMoney
-        nowd.remove(at: indexOfMin)
-        count += 1
+func solution(_ left:Int, _ right:Int) -> Int {
+    var result = 0
+    return (left...right).map{ num in
+        (1...num).filter
     }
-    return count - 1
 }
 
-//print(solution([1,3,2,5,4], 9))
-print(solution([2,2,3,3], 10))
 
-//print(zip([1,3], [2,2]).map{ * }.reduce(0, +))
+print(solution(24, 27))
+
+//solution(13, 17)
