@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CEA708C1294D519D00C7B086 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA708BC294C77AB00C7B086 /* File.swift */; };
-		CEE4C49B295E66FA00C87543 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4C497295E65B900C87543 /* main.swift */; };
+		CEE4C49C296255C100C87543 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE4C499295E65C300C87543 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -63,8 +63,8 @@
 		CEE4C48D295BCFD400C87543 /* Lv1. 문자열을 정수로 바꾸기.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lv1. 문자열을 정수로 바꾸기.swift"; sourceTree = "<group>"; };
 		CEE4C492295E624F00C87543 /* Lv1. 정수 내림차순으로 배치하기.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lv1. 정수 내림차순으로 배치하기.swift"; sourceTree = "<group>"; };
 		CEE4C495295E65A400C87543 /* Lv1. 두 정수 사이의 합.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lv1. 두 정수 사이의 합.swift"; sourceTree = "<group>"; };
-		CEE4C497295E65B900C87543 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		CEE4C499295E65C300C87543 /* File2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File2.swift; sourceTree = "<group>"; };
+		CEE4C497295E65B900C87543 /* Lv1. 약수의 개수와 덧셈.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lv1. 약수의 개수와 덧셈.swift"; sourceTree = "<group>"; };
+		CEE4C499295E65C300C87543 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,8 +135,8 @@
 				CEE4C48D295BCFD400C87543 /* Lv1. 문자열을 정수로 바꾸기.swift */,
 				CEE4C492295E624F00C87543 /* Lv1. 정수 내림차순으로 배치하기.swift */,
 				CEE4C495295E65A400C87543 /* Lv1. 두 정수 사이의 합.swift */,
-				CEE4C497295E65B900C87543 /* main.swift */,
-				CEE4C499295E65C300C87543 /* File2.swift */,
+				CEE4C497295E65B900C87543 /* Lv1. 약수의 개수와 덧셈.swift */,
+				CEE4C499295E65C300C87543 /* main.swift */,
 			);
 			name = "프로그래머스";
 			path = "프로그래머스";
@@ -210,7 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEA708C1294D519D00C7B086 /* File.swift in Sources */,
-				CEE4C49B295E66FA00C87543 /* main.swift in Sources */,
+				CEE4C49C296255C100C87543 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

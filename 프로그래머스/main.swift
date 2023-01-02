@@ -1,22 +1,36 @@
-//
-//  File.swift
-//  Algorithm
-//
-//  //Lv1. 약수의 개수와 덧셈
-//
+
+
+// Lv1. [1차] 비밀지도
 
 import Foundation
 
 // MARK: - 실패 (signal: illegal instruction (core dumped))
 
-func solution(_ left:Int, _ right:Int) -> Int {
-    var result = 0
-    return (left...right).map{ num in
-        (1...num).filter
+//func solution(_ n:Int, _ arr1:[Int], _ arr2:[Int]) -> [String] {
+//
+//    let arrBit1:[UInt8] = arr1.map{UInt8($0)}
+//    let arrBit2:[UInt8] = arr2.map{UInt8($0)}
+//    var arrBit = (0...n-1).map{Int(String(arrBit1[$0] | arrBit2[$0],radix: 2))!}
+//
+//    return arrBit.map{
+//        String(format: "%0\(n)ld", $0).map{$0 == "0" ? " " : "#"}.joined()
+//    }
+//}
+
+
+
+func solution(_ n:Int, _ arr1:[Int], _ arr2:[Int]) -> [String] {
+    
+    let arrBit1:[Int] = arr1.map{Int(String($0,radix: 2))!}
+    let arrBit2:[Int] = arr2.map{Int(String($0,radix: 2))!}
+    var arrBit = (0..<n).map{arrBit1[$0] + arrBit2[$0]}
+    var result = arrBit.map{ i in
+        String(format: "%0\(n)ld", i).map{$0 == "0" ? " " : "#"}.joined()
     }
+    return result
 }
+    
 
 
-print(solution(24, 27))
+print(solution(6, [46, 33, 33 ,22, 31, 50], [27 ,56, 19, 14, 14, 10]))
 
-//solution(13, 17)
