@@ -2,44 +2,31 @@
 //  File.swift
 //  Algorithm
 //
-//  Created by 박혜운 on 2023/01/03.
+//  Lv0. 평행 
 //
 
 import Foundation
 
-// MARK: - 첫 시도
-//func solution(_ sizes:[[Int]]) -> Int {
-//    var w:Int = 0 //(좌, 우) (가로, 세로)
-//    var h:Int = 0
-//    sizes.map{$0[0] >= $0[1] ? $0 : $0.reversed()}.forEach{size in
-//        if size[0] >= w {
-//            w = size[0]
-//        }
-//        if size[1] >= h {
-//            h = size[1]
-//        }
-//    }
-//    return w * h
-//}
-
-//(1) 가로길이가 세로길이보다 반드시 길거나 같다
-//(2) 가로 길이 중 최대값 * 세로 길이 중 최대값
-
-
-// MARK: - 더 나은 풀이
-
-func solution(_ sizes:[[Int]]) -> Int {
-    var maxNum = 0
-    var minNum = 0
-
-    for size in sizes {
-        maxNum = max(maxNum, size.max()!)
-        minNum = max(minNum, size.min()!)
+func solution(_ dots:[[Int]]) -> Int {
+    var compareDots = dots
+    compareDots.remove(at: 0)
+    var allInclination:[Double] = []
+    for dot in dots {
+        let dotX = dot[0] //기준 점 x 좌표
+        let dotY = dot[1] //기준 점 y 좌표
+        let inclination:[Double] = compareDots.map{ compareDot in
+            Double(compareDot[1]-dotY)/Double(compareDot[0]-dotX)
+        }
+        allInclination += inclination
+        
+        if Set(allInclination).count <= allInclination.count - 1 {
+            return 1
+        }
+        if !compareDots.isEmpty {
+            compareDots.remove(at: 0)
+        }
     }
-    return maxNum * minNum
+    return 0
 }
 
-
-//print(solution([[60, 50], [30, 70], [60, 30], [80, 40]])) //4000
-//print(solution([[10, 7], [12, 3], [8, 15], [14, 7], [5, 15]])) //120
-//print(solution([[14, 4], [19, 6], [6, 16], [18, 7], [7, 11]])) //133
+print(solution([[1, 4], [9, 2], [3, 8], [11, 6]]))
