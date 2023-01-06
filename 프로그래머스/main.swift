@@ -2,31 +2,24 @@
 //  File.swift
 //  Algorithm
 //
-//  Lv0. 평행 
+//  Lv0. 특이한 정렬
+
 //
 
 import Foundation
 
-func solution(_ dots:[[Int]]) -> Int {
-    var compareDots = dots
-    compareDots.remove(at: 0)
-    var allInclination:[Double] = []
-    for dot in dots {
-        let dotX = dot[0] //기준 점 x 좌표
-        let dotY = dot[1] //기준 점 y 좌표
-        let inclination:[Double] = compareDots.map{ compareDot in
-            Double(compareDot[1]-dotY)/Double(compareDot[0]-dotX)
-        }
-        allInclination += inclination
-        
-        if Set(allInclination).count <= allInclination.count - 1 {
-            return 1
-        }
-        if !compareDots.isEmpty {
-            compareDots.remove(at: 0)
-        }
-    }
-    return 0
+
+//func solution(_ numlist:[Int], _ n:Int) -> [Int] {
+//    return numlist.map{$0-n}.sorted {
+//        guard abs($0) != abs($1) else {return $0>=$1}
+//        return abs($0) < abs($1)
+//    }.map{$0+n}
+//}
+
+// MARK: - 더 나은 풀이 : 우선 순위에 따라 비교하는 법 - 튜플
+
+func solution(_ numlist:[Int], _ n:Int) -> [Int] {
+    return numlist.sorted(by: { (abs($0 - n), -$0) < (abs($1 - n), -$1) })
 }
 
-print(solution([[1, 4], [9, 2], [3, 8], [11, 6]]))
+
