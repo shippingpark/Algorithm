@@ -1,30 +1,24 @@
 //
-//  File2.swift
+//  File.swift
 //  Algorithm
 //
-//  LV1. 크기가 작은 부분 문자열
+//  LV1. K번째수
 //
 
 import Foundation
 
-func solution(_ t:String, _ p:String) -> Int {
-    let pLength = p.count
-    let tLength = t.count
-    var tArray:[String] = []
+func solution(_ array:[Int], _ commands:[[Int]]) -> [Int] {
+    var result: [Int] = []
     
-    (0...tLength-pLength).forEach{
-        tArray.append(t.map{String($0)}[$0...$0+pLength-1].joined())
+    for command in commands {
+        let i = command[0]; let j = command[1]; let k = command[2];
+        var sliceArr = array[i-1...j-1]
+        result.append(sliceArr.sorted()[k-1])
     }
-    print(tArray)
-    return tArray.filter{Int($0)! <= Int(p)!}.count
+    
+    return result
 }
 
-
-
-//일단!!! pString을
-print(solution("3141592", "271")) //2
-print(solution("500220839878", "7")) //8
-
-print(solution("10203", "15")) //3
+//print(solution([1, 5, 2, 6, 3, 7, 4], [[2, 5, 3], [4, 4, 1], [1, 7, 3]]))
 
 
