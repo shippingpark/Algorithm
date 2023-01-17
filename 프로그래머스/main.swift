@@ -2,23 +2,49 @@
 //  File.swift
 //  Algorithm
 //
-//  LV1. K번째수
+//  LV1.푸드 파이트 대회
+
 //
 
 import Foundation
 
-func solution(_ array:[Int], _ commands:[[Int]]) -> [Int] {
-    var result: [Int] = []
+// MARK: - 처음 풀이
+func solution(_ food:[Int]) -> String {
+    var result:String = ""
     
-    for command in commands {
-        let i = command[0]; let j = command[1]; let k = command[2];
-        var sliceArr = array[i-1...j-1]
-        result.append(sliceArr.sorted()[k-1])
+    for (i, a) in food.enumerated() {
+        guard a != 1 else {continue}
+        result += Array(repeating: "\(i)", count: a/2).joined()
+        for _ in 1...a/2 {
+            result += String(i)
+        }
+    }
+
+    var clone = result
+    result += "0"
+
+    while !clone.isEmpty {
+        result += String(clone.popLast()!)
     }
     
     return result
 }
 
-//print(solution([1, 5, 2, 6, 3, 7, 4], [[2, 5, 3], [4, 4, 1], [1, 7, 3]]))
+// MARK: - 개선 풀이
+
+func solution(_ food:[Int]) -> String {
+    var resultL:String = ""
+    var resultR:String = ""
+    
+    for (i, a) in food.enumerated() {
+        guard a != 1 else {continue}
+        resultL += Array(repeating: "\(i)", count: a/2).joined()
+        resultR.insert(contentsOf: Array(repeating: "\(i)", count: a/2).joined(), at: resultR.startIndex)
+    }
+    
+    return resultL + "0" + resultR
+}
 
 
+print(solution([1, 3, 4, 6])) //"1223330333221"
+print(solution([1, 7, 1, 2])) //"111303111"
