@@ -2,49 +2,43 @@
 //  File.swift
 //  Algorithm
 //
-//  LV1.푸드 파이트 대회
+//  [1차] 다트 게임
 
-//
 
 import Foundation
 
-// MARK: - 처음 풀이
-func solution(_ food:[Int]) -> String {
-    var result:String = ""
-    
-    for (i, a) in food.enumerated() {
-        guard a != 1 else {continue}
-        result += Array(repeating: "\(i)", count: a/2).joined()
-        for _ in 1...a/2 {
-            result += String(i)
+func solution(_ dartResult:String) -> Int {
+    var result:[Double] = []
+    var count = 0 //연산 수
+        
+    for char in dartResult {
+        switch char {
+        case "S": count += 1
+        case "D": result[result.endIndex-1] = pow(result[result.endIndex-1], 2); count += 1
+        case "T": result[result.endIndex-1] = pow(result[result.endIndex-1], 3); count += 1
+        case "*":
+            result[result.endIndex-1] *= 2
+            guard result.endIndex != 1 else {break}
+            result[result.endIndex-2] *= 2
+        case "#":
+            result[result.endIndex-1] *= (-1)
+        case "0": //count = 0 , 마지막 인덱스에 든 요소가 1 ==> 10
+            if count != 0 {
+                fallthrough
+            }
+            guard result.count != 0 else {fallthrough}
+            
+            result[result.endIndex-1] = 10.0
+        default:
+            result.append(Double(String(char))!)
+            count = 0
         }
     }
-
-    var clone = result
-    result += "0"
-
-    while !clone.isEmpty {
-        result += String(clone.popLast()!)
-    }
-    
-    return result
+    return Int(result.reduce(0){$0 + $1})
 }
 
-// MARK: - 개선 풀이
+//print(solution("1S2D*3T"))
+//print(solution("1D2S#10S"))
+//print(solution("0D0S0T*"))
+//print(solution("1D2S3T*"))
 
-func solution(_ food:[Int]) -> String {
-    var resultL:String = ""
-    var resultR:String = ""
-    
-    for (i, a) in food.enumerated() {
-        guard a != 1 else {continue}
-        resultL += Array(repeating: "\(i)", count: a/2).joined()
-        resultR.insert(contentsOf: Array(repeating: "\(i)", count: a/2).joined(), at: resultR.startIndex)
-    }
-    
-    return resultL + "0" + resultR
-}
-
-
-print(solution([1, 3, 4, 6])) //"1223330333221"
-print(solution([1, 7, 1, 2])) //"111303111"
