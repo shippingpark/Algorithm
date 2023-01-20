@@ -2,43 +2,43 @@
 //  File.swift
 //  Algorithm
 //
-//  [1차] 다트 게임
-
+//  LV1.크레인 인형뽑기 게임
+//
 
 import Foundation
 
-func solution(_ dartResult:String) -> Int {
-    var result:[Double] = []
-    var count = 0 //연산 수
+func solution(_ board:[[Int]], _ moves:[Int]) -> Int {
+    var gameBoard = board
+    var dolls:[Int] = []
+    var removeDoll = 0
+    
+    for move in moves {
+        guard gameBoard.last![move - 1] != 0 else {continue}
         
-    for char in dartResult {
-        switch char {
-        case "S": count += 1
-        case "D": result[result.endIndex-1] = pow(result[result.endIndex-1], 2); count += 1
-        case "T": result[result.endIndex-1] = pow(result[result.endIndex-1], 3); count += 1
-        case "*":
-            result[result.endIndex-1] *= 2
-            guard result.endIndex != 1 else {break}
-            result[result.endIndex-2] *= 2
-        case "#":
-            result[result.endIndex-1] *= (-1)
-        case "0": //count = 0 , 마지막 인덱스에 든 요소가 1 ==> 10
-            if count != 0 {
-                fallthrough
+        let innerIndex = move - 1
+        
+        let outIndex:Int = {
+            for (index, layer) in gameBoard.enumerated() {
+                guard layer[innerIndex] == 0 else {
+                    return index
+                }
             }
-            guard result.count != 0 else {fallthrough}
-            
-            result[result.endIndex-1] = 10.0
-        default:
-            result.append(Double(String(char))!)
-            count = 0
+            return 0
+        }()
+        
+        let doll = gameBoard[outIndex][innerIndex]
+        gameBoard[outIndex][innerIndex] = 0
+        
+        if doll == dolls.first {
+            removeDoll += 2
+            dolls.removeFirst()
+        } else {
+            dolls.insert(doll, at: 0)
         }
     }
-    return Int(result.reduce(0){$0 + $1})
+    return removeDoll
 }
 
-//print(solution("1S2D*3T"))
-//print(solution("1D2S#10S"))
-//print(solution("0D0S0T*"))
-//print(solution("1D2S3T*"))
+print(solution([[0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]], [1,5,3,5,1,2,1,4])) //4
 
+//print("뽑아간 인형 : \(doll)")
