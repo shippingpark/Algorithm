@@ -2,43 +2,81 @@
 //  File.swift
 //  Algorithm
 //
-//  LV1.크레인 인형뽑기 게임
+//  Lv1. 시저암호
 //
 
 import Foundation
 
-func solution(_ board:[[Int]], _ moves:[Int]) -> Int {
-    var gameBoard = board
-    var dolls:[Int] = []
-    var removeDoll = 0
-    
-    for move in moves {
-        guard gameBoard.last![move - 1] != 0 else {continue}
-        
-        let innerIndex = move - 1
-        
-        let outIndex:Int = {
-            for (index, layer) in gameBoard.enumerated() {
-                guard layer[innerIndex] == 0 else {
-                    return index
-                }
-            }
-            return 0
-        }()
-        
-        let doll = gameBoard[outIndex][innerIndex]
-        gameBoard[outIndex][innerIndex] = 0
-        
-        if doll == dolls.first {
-            removeDoll += 2
-            dolls.removeFirst()
-        } else {
-            dolls.insert(doll, at: 0)
-        }
+
+extension String {
+    var isLowercased: Bool {
+        for c in utf8 where (65...90) ~= c { return false }
+        return true
     }
-    return removeDoll
 }
 
-print(solution([[0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]], [1,5,3,5,1,2,1,4])) //4
+func solution(_ s:String, _ n:Int) -> String {
+    let alphabet = Array("abcdefghijklnmopqrstuvwxyz")
+    let alphaBet = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
-//print("뽑아간 인형 : \(doll)")
+
+
+
+    let sArray = s.map{
+        guard $0 != " " else {
+            return $0
+        }
+        let index = alphabet.firstIndex(of: Character($0.lowercased()))!
+        if index + n > alphabet.count-1 {
+            if String($0).isLowercased {
+                return alphabet[index+n - alphabet.count]
+            }
+            return alphaBet[index+n - alphabet.count]
+        }
+        if String($0).isLowercased {
+            return alphabet[index+n]
+        }
+        return alphaBet[index+n]
+    }
+
+    return String(sArray)
+}
+
+//func solution(_ s:String, _ n:Int) -> String {
+//    let alphabet = "abcdefghijklnmopqrstuvwxyz".map{String($0)}
+//    let alphaBet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".map{String($0)}
+//    let alphabetCount = alphabet.count
+//    var result:[String] = []
+//
+//    func isLowercased(char: String) -> Bool {
+//        return alphabet.contains(char)
+//    }
+//
+//    for char in Array(s) {
+//        guard char != " " else {result.append(" "); continue }
+//        let index:Int = {
+//            var index = alphabet.firstIndex(of: char.lowercased())!
+//            index += n
+//            if index >= alphabetCount - 1 {
+//                return index - alphabetCount
+//            }
+//            return index
+//        }()
+//
+//        if isLowercased(char: String(char)) {
+//            result.append(alphabet[index])
+//        }else{
+//            result.append(alphaBet[index])
+//        }
+//    }
+//
+//    return result.joined()
+//}
+
+
+print(solution("AB", 1))
+print(solution("z", 1))
+print(solution("a B z", 4))
+
+
+
