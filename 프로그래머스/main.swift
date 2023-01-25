@@ -2,81 +2,79 @@
 //  File.swift
 //  Algorithm
 //
-//  Lv1. 시저암호
+//  Created by 박혜운 on 2023/01/25.
 //
 
 import Foundation
 
-
-extension String {
-    var isLowercased: Bool {
-        for c in utf8 where (65...90) ~= c { return false }
-        return true
-    }
-}
-
-func solution(_ s:String, _ n:Int) -> String {
-    let alphabet = Array("abcdefghijklnmopqrstuvwxyz")
-    let alphaBet = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-
-
-
-
-    let sArray = s.map{
-        guard $0 != " " else {
-            return $0
-        }
-        let index = alphabet.firstIndex(of: Character($0.lowercased()))!
-        if index + n > alphabet.count-1 {
-            if String($0).isLowercased {
-                return alphabet[index+n - alphabet.count]
-            }
-            return alphaBet[index+n - alphabet.count]
-        }
-        if String($0).isLowercased {
-            return alphabet[index+n]
-        }
-        return alphaBet[index+n]
-    }
-
-    return String(sArray)
-}
-
-//func solution(_ s:String, _ n:Int) -> String {
-//    let alphabet = "abcdefghijklnmopqrstuvwxyz".map{String($0)}
-//    let alphaBet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".map{String($0)}
-//    let alphabetCount = alphabet.count
-//    var result:[String] = []
+//func solution(_ number:Int, _ limit:Int, _ power:Int) -> Int {
+//    var result = 0
+//    var resultArr = [Int]()
 //
-//    func isLowercased(char: String) -> Bool {
-//        return alphabet.contains(char)
-//    }
-//
-//    for char in Array(s) {
-//        guard char != " " else {result.append(" "); continue }
-//        let index:Int = {
-//            var index = alphabet.firstIndex(of: char.lowercased())!
-//            index += n
-//            if index >= alphabetCount - 1 {
-//                return index - alphabetCount
-//            }
-//            return index
-//        }()
-//
-//        if isLowercased(char: String(char)) {
-//            result.append(alphabet[index])
-//        }else{
-//            result.append(alphaBet[index])
+//    for i in 1...number { //10^5
+//        let num = checkDivisor(num: i)
+//        if num > limit {
+//            resultArr.append(power)
+//            result += power
+//        } else {
+//            resultArr.append(num)
+//            result += num
 //        }
 //    }
+//    print(resultArr)
+//    return result
+//}
 //
-//    return result.joined()
+//func checkDivisor(num:Int) -> Int {
+//    guard num != 1 else {return 1}
+//    var result: Int = 1
+//    let numberPer2 = num / 2 //10^3
+//    for i in 1...numberPer2 {
+//        if num % i == 0 {
+//            result += 1
+//        }
+//    }
+//    return result
 //}
 
+//func solution(_ number:Int, _ limit:Int, _ power:Int) -> Int {
+//    var result = Array(repeating: 0, count: number)
+//    for i in 1...number {
+//        for j in 1...Int(sqrt(Double(i))) {
+//            if i % j == 0 {
+//                if (j * j) == i {
+//                    result[i-1] += 1
+//                } else {
+//                    result[i-1] += 2
+//                }
+//            }
+//            if result[i-1] > limit {
+//                result[i-1] = power
+//                break
+//            }
+//        }
+//    }
+//    return result.reduce(0,+)
+//}
 
-print(solution("AB", 1))
-print(solution("z", 1))
-print(solution("a B z", 4))
+func solution(_ number:Int, _ limit:Int, _ power:Int) -> Int {
+    var attack = [Int](repeating: 1, count: number+1)
+    attack[0] = 0
+    for i in 2...number {
+        var c = i
+        while c <= number {
+            print("\(c) <= \(number)")
+            attack[c] += 1
+            c += i
+        }
+        print(attack)
+    }
+    attack = attack.map { $0 > limit ? power : $0 }
+    return attack.reduce(0, +)
+}
 
+
+print(solution(5, 3, 2)) //10
+print(solution(10, 3, 2))
 
 
