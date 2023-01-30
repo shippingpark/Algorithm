@@ -2,37 +2,61 @@
 //  File.swift
 //  Algorithm
 //
-//  LV1. 로또의 최고 순위와 최저 순위
+//  LV1. 신규 아이디 추천
 //
 
 import Foundation
 
-func solution(_ lottos:[Int], _ win_nums:[Int]) -> [Int] {
-    var matchNum:Int = 0
-    var zeroNum:Int = 0
+func solution(_ new_id:String) -> String {
+    var new_id_Array = new_id.map{$0}
+    var result:[String] = []
     
-    for a in lottos {
-        if win_nums.contains(a) {
-            matchNum += 1
+    for id in new_id_Array {
+        if id.isUppercase {
+            result.append(id.lowercased())
+            continue
         }
-        if a == 0 {
-            zeroNum += 1
+        
+        if !(id.isLetter || id.isNumber || id == "-" || id == "_" || id == ".") {
+            continue
+        }
+        
+        if id == "." {
+            guard result.last != "." else {continue}
+            result.append(".")
+            continue
+        }
+        
+        else {
+            result.append(String(id))
         }
     }
     
-    var best:Int = {
-        var score = matchNum + zeroNum
-        switch score {
-        case 0...1: return 6
-        default:
-            return 7 - score
-        }
-    }()
-        
-    var worst:Int = 0...1 ~= matchNum ? 6 : 7 - matchNum
+    if result.first == "." {
+        result.removeFirst()
+    }
+    
+    if result.last == "." {
+        result.removeLast()
+    }
 
-    return [best, worst]
+    if result.isEmpty {
+        result.append("a")
+    }
+    
+    let resultCount = result.count
+    
+    if resultCount <= 2 {
+        var lastChar:String = result.last!
+        result += Array(repeating: lastChar, count: 3 - result.count)
+    } else if resultCount >= 16 {
+        result[15...] = []
+        if result.last == "." {
+            result.removeLast()
+        }
+    }
+    
+    return result.joined()
 }
 
-
-print(solution([45, 4, 35, 20, 3, 9], [20, 9, 3, 45, 4, 35]))//[1,1]
+print(solution("...!@BaT#*..y.abcdefghijklm")) //"bat.y.abcdefghi"
