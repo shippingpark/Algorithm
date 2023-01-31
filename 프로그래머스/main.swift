@@ -1,62 +1,54 @@
 //
 //  File.swift
-//  Algorithm
+//  LV1. 과일 장수
 //
-//  LV1. 신규 아이디 추천
+//  Created by 박혜운 on 2023/01/31.
 //
 
 import Foundation
 
-func solution(_ new_id:String) -> String {
-    var new_id_Array = new_id.map{$0}
-    var result:[String] = []
+
+// MARK: - 시간 초과 코드
+
+//func solution(_ k:Int, _ m:Int, _ score:[Int]) -> Int {
+//    let fullApple = score.count
+//    let fullBox = fullApple / m //2
+//    var maxApple = fullBox * m
+//    var result:Int = .zero
+//
+//    var sortAppleGrade = score.sorted()
+//    if fullApple-maxApple > 0 {
+//        sortAppleGrade[0...fullApple-maxApple-1] = []
+//    }
+//
+//    while sortAppleGrade.count >= m {
+//        result += sortAppleGrade.first! * m
+//        sortAppleGrade[0...(m-1)] = []
+//    }
+//    return result
+//}
+
+//개선점 : array 배열의 크기를 지속적으로 잘라내는 점.
+
+
+// MARK: - 같은 로직, 배열 길이 수정 없는 코드
+
+func solution(_ k:Int, _ m:Int, _ score:[Int]) -> Int {
+    let fullApple = score.count //8
+    var result:Int = .zero
+    var last:Int = m - 1
+    var sortAppleGrade = score.sorted(by: >)
     
-    for id in new_id_Array {
-        if id.isUppercase {
-            result.append(id.lowercased())
-            continue
-        }
-        
-        if !(id.isLetter || id.isNumber || id == "-" || id == "_" || id == ".") {
-            continue
-        }
-        
-        if id == "." {
-            guard result.last != "." else {continue}
-            result.append(".")
-            continue
-        }
-        
-        else {
-            result.append(String(id))
-        }
-    }
-    
-    if result.first == "." {
-        result.removeFirst()
-    }
-    
-    if result.last == "." {
-        result.removeLast()
+    while last < fullApple {
+        result += sortAppleGrade[last] * m
+        last += m
     }
 
-    if result.isEmpty {
-        result.append("a")
-    }
-    
-    let resultCount = result.count
-    
-    if resultCount <= 2 {
-        var lastChar:String = result.last!
-        result += Array(repeating: lastChar, count: 3 - result.count)
-    } else if resultCount >= 16 {
-        result[15...] = []
-        if result.last == "." {
-            result.removeLast()
-        }
-    }
-    
-    return result.joined()
+    return result
 }
 
-print(solution("...!@BaT#*..y.abcdefghijklm")) //"bat.y.abcdefghi"
+//나누어 떨어지는 요소에 대한 계산만 이루어져야 할 때, 그 크기만큼의 구간 설정은 while로 해결할 수 있다
+
+
+print(solution(3, 4, [1, 2, 3, 1, 2, 3, 1])) //8
+print(solution(4, 3, [4, 1, 2, 2, 4, 4, 4, 4, 1, 2, 4, 2])) //33
