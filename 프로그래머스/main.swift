@@ -2,55 +2,36 @@
 //  main.swift
 //  Algorithm
 //
-//  Greedy 체육복
+//  LV1.옹알이 (2)
 //
 
 import Foundation
+//"aya", "ye", "woo", "ma"
+func solution(_ babbling:[String]) -> Int {
+    var result = 0
 
-func solution(_ n:Int, _ lost:[Int], _ reserve:[Int]) -> Int {
-    var clothes:[Int] = Array(repeating: 1, count: n)
-    var i = -1
-    
-    for lostStudent in lost {
-        clothes[lostStudent-1] -= 1
-    }
-    
-    for reserveStudent in reserve {
-        clothes[reserveStudent-1] += 1
-    }
-    
-    while i < n - 1 {
-        i += 1
-        
-        guard clothes[i] == 0 else {continue}
-        
-        if i == 0 && clothes[1] > 1 {
-            clothes[0] += 1
-            clothes[1] -= 1
-        }
-        
-        else if i == n - 1 && clothes[n - 2] > 1 {
-            clothes[i] += 1
-            clothes[n-2] -= 1
-        }
-        
-        else if 1...(n - 2) ~= i {
-            if clothes[i-1] > 1 {
-                clothes[i] += 1
-                clothes[i-1] -= 1
-                
-            } else if clothes[i+1] > 1 {
-                clothes[i] += 1
-                clothes[i+1] -= 1
+    for real in babbling {
+        var old:Substring = "" //자르기 전의 값 담길 변수
+        var new:Substring = Substring(real) //자른 후의 값 담길 변수
+        while new != "" {
+            old = new
+            if old.hasPrefix("ye") || old.hasPrefix("ma") {
+                guard old.count != 2 else {result += 1; break}
+                new = old.suffix(old.count - 2)
+                guard old.prefix(2) != new.prefix(2) else {break}
+            } else if old.hasPrefix("aya") || old.hasPrefix("woo") {
+                guard old.count != 3 else {result += 1; break}
+                new = old.suffix(old.count - 3)
+                guard old.prefix(3) != new.prefix(3) else {break}
+            } else {
+                break
             }
-            
         }
     }
-    
-    
-    return clothes.filter{$0 != 0}.count
+    return result
 }
 
 
+print(solution(["ayaye", "uuu", "yeye", "yemawoo", "ayaayaa"]))//2
+print(solution(["ayaye", "uuu", "yeayaye", "yemawoo", "ayaayaa"]))//3
 
-print(solution(5, [2, 4], [1, 3, 5])) //[2, 0, 2, 0, 2]
