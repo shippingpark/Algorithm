@@ -1,37 +1,67 @@
 //
-//  main.swift
+//  File.swift
 //  Algorithm
 //
-//  LV1.옹알이 (2)
+//  LV1. 개인정보 수집 유효기간
 //
 
 import Foundation
-//"aya", "ye", "woo", "ma"
-func solution(_ babbling:[String]) -> Int {
-    var result = 0
 
-    for real in babbling {
-        var old:Substring = "" //자르기 전의 값 담길 변수
-        var new:Substring = Substring(real) //자른 후의 값 담길 변수
-        while new != "" {
-            old = new
-            if old.hasPrefix("ye") || old.hasPrefix("ma") {
-                guard old.count != 2 else {result += 1; break}
-                new = old.suffix(old.count - 2)
-                guard old.prefix(2) != new.prefix(2) else {break}
-            } else if old.hasPrefix("aya") || old.hasPrefix("woo") {
-                guard old.count != 3 else {result += 1; break}
-                new = old.suffix(old.count - 3)
-                guard old.prefix(3) != new.prefix(3) else {break}
-            } else {
-                break
-            }
+func solution(_ today:String, _ terms:[String], _ privacies:[String]) -> [Int] {
+    let todayDate = today.components(separatedBy: ".").map{Int($0)!}
+    let termsDic:[String: Int] = {
+        let terms = terms.map{$0.components(separatedBy: " ")}
+        var Diction:[String: Int] = Dictionary()
+        for i in terms {
+            Diction[i[0]] = Int(i[1])!
         }
+        return Diction
+    }()
+    let privacies = privacies.map{ $0.components(separatedBy: " ")}
+    
+    var i = 1
+    var result:[Int] = []
+    
+    for privacy in privacies {
+        let userDate:[String] = (privacy.first?.components(separatedBy: "."))!
+        let userPass = privacy.last!
+        let userTerm = termsDic[userPass]!
+        var userD = Int(userDate[2])! - 1
+        var userM = Int(userDate[1])! + userTerm
+        var userY = Int(userDate[0])!
+
+        if userD == 0 {
+            userD = 28
+            userM -= 1
+        }
+        
+        if userM > 12 {
+            let quotient = userM / 12
+            let remainder = userM % 12
+            userM -= remainder != 0 ? 12 * quotient : 12 * (quotient - 1)
+            userY += remainder != 0 ? quotient : quotient - 1
+        }
+        
+        switch (userY, userM, userD) {
+        case (userY, _, _) where userY > todayDate[0]:
+            break
+        case (userY, _, _) where userY < todayDate[0]:
+            result.append(i)
+        case (_, userM, _) where userM > todayDate[1]:
+            break
+        case (_, userM, _) where userM < todayDate[1]:
+            result.append(i)
+        case (_, _, userD) where userD >= todayDate[2]:
+            break
+        default:
+            result.append(i)
+        }
+        i += 1
     }
     return result
 }
 
+print(solution("2022.05.19", ["A 6", "B 12", "C 3"], ["2021.05.02 A", "2021.07.01 B", "2022.02.19 C", "2022.02.20 C"]))
+//[1, 3]
 
-print(solution(["ayaye", "uuu", "yeye", "yemawoo", "ayaayaa"]))//2
-print(solution(["ayaye", "uuu", "yeayaye", "yemawoo", "ayaayaa"]))//3
 
