@@ -7,40 +7,25 @@
 
 import Foundation
 
-// MARK: - 세 번째 수정 풀이 : 인덱스 (진행중)
+// MARK: - 개선 풀이 : Stack
 
-
-//func solution(_ s:String) -> Int{
-//    let sArray = s.map{$0}
-//    var leftIndex:Int = 0
-//    var rightIndex:Int = 1
-//
-//    var left: String = ""
-//    var right: String = s
-//
-//    while rightIndex != s.count {
-//        let pop = rightIndex
-//        rightIndex += 1
-//        if let last = left.last {
-//            if last == pop {
-//                left.removeLast()
-//            } else {
-//                left.append(pop)
-//            }
-//        } else {
-//            left.append(pop)
-//        }
-//    }
-//    return left.isEmpty ? 1 : 0
-//}
-//
-//print(solution("qaabaabqss"))
-
-
+func solution(_ s:String) -> Int{
+    var stack = [Character]()
+    
+    for char in s {
+        if char == (stack.last ?? " ") {
+            stack.popLast()
+        } else {
+            stack.append(char)
+        }
+    }
+    return stack.isEmpty ? 1 : 0
+    
+}
 
 
 // MARK: - 두 번째 수정 풀이 (시간초과)
-
+//
 //func solution(_ s:String) -> Int{
 //    var left: String = ""
 //    var right: String = s
