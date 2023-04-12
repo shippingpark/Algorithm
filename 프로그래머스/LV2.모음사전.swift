@@ -92,7 +92,7 @@ func solution(_ word: String) -> Int {
 //    return result + addBeford
 //}
 
-
-print(solution("I"))
-print(solution("EIAAA"))
-print(solution("A"))
+//
+//print(solution("I"))
+//print(solution("EIAAA"))
+//print(solution("A"))
