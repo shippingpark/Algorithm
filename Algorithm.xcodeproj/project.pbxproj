@@ -48,7 +48,7 @@
 		CE41E54029ECC3F000571B93 /* LV2. 뒤에 있는 큰 수 찾기 .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LV2. 뒤에 있는 큰 수 찾기 .swift"; sourceTree = "<group>"; };
 		CE44E28029C8765F007319C5 /* LV2. 연속 부분 수열 합의 개수 .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LV2. 연속 부분 수열 합의 개수 .swift"; sourceTree = "<group>"; };
 		CE44E2A229C993AD007319C5 /* LV2. 프린터 .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LV2. 프린터 .swift"; sourceTree = "<group>"; };
-		CE44E2AF29CAE3CF007319C5 /* XLV2. [1차] 뉴스 클러스터링 .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XLV2. [1차] 뉴스 클러스터링 .swift"; sourceTree = "<group>"; };
+		CE44E2AF29CAE3CF007319C5 /* LV2. [1차] 뉴스 클러스터링 .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LV2. [1차] 뉴스 클러스터링 .swift"; sourceTree = "<group>"; };
 		CE4658F429DA5EBC0021D62C /* LV2.주차 요금 계산 .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LV2.주차 요금 계산 .swift"; sourceTree = "<group>"; };
 		CE4658F829DBA7F50021D62C /* LV2.오픈채팅방 .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LV2.오픈채팅방 .swift"; sourceTree = "<group>"; };
 		CE46590029DCF2220021D62C /* LV2. 땅따먹기.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LV2. 땅따먹기.swift"; sourceTree = "<group>"; };
@@ -277,7 +277,7 @@
 				CE1B710529C11D57003E1CDE /* LV2. n^2 배열 자르기.swift */,
 				CE44E28029C8765F007319C5 /* LV2. 연속 부분 수열 합의 개수 .swift */,
 				CE44E2A229C993AD007319C5 /* LV2. 프린터 .swift */,
-				CE44E2AF29CAE3CF007319C5 /* XLV2. [1차] 뉴스 클러스터링 .swift */,
+				CE44E2AF29CAE3CF007319C5 /* LV2. [1차] 뉴스 클러스터링 .swift */,
 				CED6806129D26826009BD9F0 /* XLV2. 피로도.swift */,
 				CED6805F29D26811009BD9F0 /* LV2. [3차]압축.swift */,
 				CED6806329D3C6B2009BD9F0 /* LV2. 할인행사.swift */,
