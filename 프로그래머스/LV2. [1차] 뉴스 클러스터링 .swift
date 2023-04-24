@@ -61,5 +61,4 @@ func solution(_ str1:String, _ str2:String) -> Int {
     return 합 > 0 ? Int(Double(교) / Double(합) * 65536.0) : 65536
 }
 
-//print(solution("E=M*C^2", "e=m*c^2")) //65536
 
