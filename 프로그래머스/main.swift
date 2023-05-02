@@ -5,40 +5,66 @@
 
 import Foundation
 
-func solution(_ wallpaper:[String]) -> [Int] {
-    var (lux, luy) = (50, 50)
-    var (rdx, rdy) = (0, 0)
+func solution(_ n:Int) -> [Int] {
+    var triangle = [[Int]](repeating: [Int](repeating: 0, count: n), count: n)
+    var currentRow = 0
+    var currentCol = 0
+    var currentNum = 1
+    var direction = 0 // 0: down, 1: right, 2: up
     
-    wallpaper.enumerated().forEach{ (r, line) in
-        line.enumerated().forEach{ (c, area) in
-            if area == "#" {
-                lux = min(lux, r)
-                luy = min(luy, c)
-                rdx = max(rdx, r)
-                rdy = max(rdy, c)
+    while currentNum <= (n * (n + 1)) / 2 {
+        triangle[currentRow][currentCol] = currentNum
+        
+        //그 다음 요소의 위치 좌표 결정
+        if direction == 0 { //아래로 이동 하려 함
+            if currentRow + 1 < n && triangle[currentRow + 1][currentCol] == 0 {
+                currentRow += 1
+            } else {
+                direction = 1
+                currentCol += 1
+            }
+        } else if direction == 1 { //우로 이동 하려 함
+            if currentCol + 1 < n && triangle[currentRow][currentCol + 1] == 0 {
+                currentCol += 1
+            } else {
+                direction = 2
+                currentRow -= 1
+                currentCol -= 1
+            }
+        } else { //좌, 상으로 이동 하려 함
+            if currentRow - 1 >= 0 && triangle[currentRow - 1][currentCol - 1] == 0 {
+                currentRow -= 1
+                currentCol -= 1
+            } else {
+                direction = 0
+                currentRow += 1
+            }
+        }
+        //그 다음 요소
+        currentNum += 1
+    }
+    
+    //triangle [[1, 0, 0, 0, 0], [2, 12, 0, 0, 0], [3, 13, 11, 0, 0], [4, 14, 15, 10, 0], [5, 6, 7, 8, 9]]
+    
+    var result = [Int]()
+    for row in triangle {
+        for num in row {
+            if num > 0 {
+                result.append(num)
             }
         }
     }
     
-    return [lux, luy, rdx+1, rdy+1]
+    return result
 }
 
-//func solution(_ wallpaper:[String]) -> [Int] {
-//    typealias Position = (Int, Int) //(r, c)
-//    var start: Position = (wallpaper.count-1, wallpaper[0].count-1)
-//    var finish: Position = (0,0)
-//
-//    wallpaper.enumerated().forEach{ (r, line) in
-//        line.enumerated().forEach{ (c, area) in
-//            if area == "#" {
-//                start = Position(min(start.0, r), min(start.1, c))
-//                finish = Position(max(finish.0, r+1), max(finish.1, c+1))
-//            }
-//        }
-//    }
-//
-//    return [start.0, start.1, finish.0, finish.1]
-//}
 
-
-print(solution([".#...", "..#..", "...#."])) //[0, 1, 3, 4]
+ 
+print(solution(5))
+//가장 좌측 인덱스 번호
+//0 + 1
+//1 + 2
+//3 + 3
+//6 + 4
+//10 + 5
+//15
