@@ -1,6 +1,8 @@
 //
-//  main.swift
-//  Created by 박혜운 on 2023/02/22.
+//  Lv2. 달리기 경주.swift
+//  Algorithm
+//
+//  Created by 박혜운 on 2023/05/03.
 //
 
 import Foundation
