@@ -5,19 +5,69 @@
 
 import Foundation
 
-func solution(_ players:[String], _ callings:[String]) -> [String] {
-    var playersIndex:[String:Int] = Dictionary(uniqueKeysWithValues: zip(players,(0..<players.count)))
-    var result:[String] = players
+func solution(_ sequence:[Int], _ k:Int) -> [Int] {
+    var result: [Int] = []
+    var cal: Int = 0
+    var start = 0
     
-    for calling in callings {
-        let 내자리 = playersIndex[calling]!
-        let 내이름 = result[내자리]
-        let 앞선수 = result[내자리-1]
-        result.swapAt(내자리, 내자리-1)
-        playersIndex[내이름]! -= 1
-        playersIndex[앞선수]! += 1
+    main : for (last, num) in sequence.enumerated() {
+        guard num != k else {result = [last, last]; break}
+        
+        cal += num
+
+        if cal > k {
+            while cal > k {
+                guard start != last else {break main}
+                let firstNum = sequence[start]
+                cal -= firstNum
+                start += 1
+            }
+        }
+        
+        if cal == k {
+            if result.isEmpty {
+                result = [start, last]
+            } else {
+                let len = last - start
+                if len < result[1] - result[0] {
+                    result = [start, last]
+                }
+            }
+        }
     }
+    
     return result
 }
 
-print(solution(["mumu", "soe", "poe", "kai", "mine"], ["kai", "kai", "mine", "mine"]))
+//func solution(_ sequence:[Int], _ k:Int) -> [Int] {
+//    var 적립: [(Int, Int)] = []
+//    var 새로: [(Int, Int)] = [] //결과값  [(인덱스, 값), (인덱스, 값)]  //[시작인덱스, 마감인덱스]
+//    var cal: Int = 0
+//    var start = 0
+//    var last = 0
+////[1, 2, 3, 4, 5] // 7
+//    for (index, num) in sequence.enumerated() {
+//        guard num != k else {적립 = [(index, num), (index, num)]; break}
+//        guard num < k else {continue}
+//
+//        cal += num
+//        새로.append((index,num))
+//
+//        if cal > k {
+//            while cal > k {
+//                let first = 새로.removeFirst()
+//                cal -= first.1
+//            }
+//        }
+//
+//        if cal == k {
+//            if 적립.isEmpty {
+//                적립 = 새로
+//            } else {
+//                적립 = 적립.count <= 새로.count ? 적립 : 새로
+//            }
+//        }
+//    }
+//
+//    return [적립.first!.0, 적립.last!.0]
+//}
