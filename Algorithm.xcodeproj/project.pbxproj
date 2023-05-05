@@ -33,7 +33,7 @@
 		CE169AA129B01F310063A57D /* LV2. N개의 최소공배수.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LV2. N개의 최소공배수.swift"; sourceTree = "<group>"; };
 		CE169AD429B1723E0063A57D /* LV2. 점프와 순간 이동 .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LV2. 점프와 순간 이동 .swift"; sourceTree = "<group>"; };
 		CE19D9322989EFF0003F4399 /* LV1.  문자열 나누기  .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LV1.  문자열 나누기  .swift"; sourceTree = "<group>"; };
-		CE19D934298B445E003F4399 /* XLV1. 햄버거 만들기.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XLV1. 햄버거 만들기.swift"; sourceTree = "<group>"; };
+		CE19D934298B445E003F4399 /* LV2. 햄버거 만들기.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LV2. 햄버거 만들기.swift"; sourceTree = "<group>"; };
 		CE19D93629907C02003F4399 /* LV1. 명예의 전당(1).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LV1. 명예의 전당(1).swift"; sourceTree = "<group>"; };
 		CE19D938299092E3003F4399 /* Greedy 체육복.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Greedy 체육복.swift"; sourceTree = "<group>"; };
 		CE1B710529C11D57003E1CDE /* LV2. n^2 배열 자르기.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LV2. n^2 배열 자르기.swift"; sourceTree = "<group>"; };
@@ -256,7 +256,7 @@
 				CE6617972988935200F30C20 /* LV1. 과일 장수.swift */,
 				CE6617992988A65F00F30C20 /* LV1. 성격 유형 검사하기.swift */,
 				CE19D9322989EFF0003F4399 /* LV1.  문자열 나누기  .swift */,
-				CE19D934298B445E003F4399 /* XLV1. 햄버거 만들기.swift */,
+				CE19D934298B445E003F4399 /* LV2. 햄버거 만들기.swift */,
 				CE19D93629907C02003F4399 /* LV1. 명예의 전당(1).swift */,
 				CE19D938299092E3003F4399 /* Greedy 체육복.swift */,
 				CE9E57B82995C07900DCDB63 /* LV1. 신고 결과 받기.swift */,

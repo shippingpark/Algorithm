@@ -29,7 +29,7 @@ func solution(_ ingredient:[Int]) -> Int {
     for 재료 in ingredient {
         stack.append(재료)
         let pattern = stack.suffix(4)
-        if pattern == [1, 2, 3, 1] {
+        if pattern == [1, 2, 3, 4] {
             result += 1
             stack.removeLast(4)
         }
