@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 func solution(_ topping:[Int]) -> Int {
     var leftCakeSet = Set<Int>()
     var rightCakeSet = Set<Int>()
