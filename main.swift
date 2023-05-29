@@ -5,9 +5,61 @@
 
 
 
-import Foundation
 
-
+//import Foundation
+//
+//
+//let input = readLine()!.split(separator: " ").map{ String($0) }
+//let n:String = input[0]
+//let m:String = input[1]
+//let nCount = n.count
+//var length = nCount-1
+//var isEmptyFront:Bool = true
+//
+//func solve() {
+//    var startP = 0
+//    var endP = 0
+//
+//    loop : while length > 0 {
+//        for start in 0..<nCount {
+//            guard start + length < nCount else {break}
+//            let startIndex = n.index(n.startIndex, offsetBy: start)
+//            let endIndex = n.index(startIndex, offsetBy: length)
+//            let word = String(n[startIndex...endIndex])
+//            if m.contains(word) {
+//                startP = start
+//                endP = start + length
+//                isEmptyFront = start - (nCount - length) > 0
+//                break loop
+//            }
+//        }
+//        length -= 1
+//    }
+//
+//    let empty = m.count - n.count
+//    if isEmptyFront {
+//        startP += empty
+//        endP += empty
+//    }
+//
+//    var result = 0
+//
+//    for i in 0..<m.count {
+//        guard i < (startP) || i > (endP) else {continue}
+//        guard i < nCount else {continue}
+//        let indexN = n.index(n.startIndex, offsetBy: i)
+//        let indexM = m.index(m.startIndex, offsetBy: i)
+//        if n[indexN] == m[indexM] {
+//            print(i)
+//            result -= 1
+//        }
+//    }
+//
+//    print(result)
+//
+//}
+//
+//solve()
 
 
 //func solution(_ number: String, _ k: Int) -> String {
