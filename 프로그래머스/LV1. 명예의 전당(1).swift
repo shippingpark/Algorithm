@@ -63,4 +63,22 @@ func solution(_ k:Int, _ score:[Int]) -> [Int] {
     }
 }
 
+// MARK: - 추가 풀이
 
+func solution(_ k:Int, _ score:[Int]) -> [Int] {
+    var stack:[Int] = [score.first!]
+    var result:[Int] = [score.first!]
+    
+    for i in 1..<score.count {
+        stack.append(score[i])
+        stack.sort(by: >)
+        
+        if stack.count > k {
+            stack.popLast()
+        }
+        
+        result.append(stack.last!)
+    }
+    
+    return result
+}
