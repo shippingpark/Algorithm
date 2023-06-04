@@ -46,3 +46,27 @@ func solution(_ keymap: [String], _ targets: [String]) -> [Int] {
 
 
 print(solution(["ABACD", "BCEFD"],["ABCD","AABB", "AAVS"])) //[9, 4]
+
+import Foundation
+
+//func solution(_ keymap:[String], _ targets:[String]) -> [Int] {
+//    
+//    var dictionary: [Character:Int] = [:]
+//    
+//    for key in keymap {
+//        key.enumerated().forEach{(index, char) in dictionary[char] = min(dictionary[char] ?? Int.max , index+1)}
+//    }
+//    
+//    var result:[Int] = []
+//    
+//    Loop : for target in targets {
+//        var count = 0
+//        for char in target {
+//            guard let value = dictionary[char] else {result.append(-1); continue Loop}
+//            count += value
+//        }
+//        result.append(count)
+//    }
+//    
+//    return result
+//}
