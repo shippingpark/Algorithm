@@ -6,7 +6,14 @@
 import Foundation
 
 
+let count: Int = Int(readLine()!)!
 
+for _ in 0..<count {
+    let input = readLine()!.split(separator: " ").map{ String($0) }
+    let result: Int = Int(input[0], radix: 2)! ^ Int(input[1], radix: 2)!
+    print(String(result, radix: 2))
+    print(String(result, radix: 2).reduce(0){ $0 + Int(String($1))! })
+}
 
 // MARK: - 문제 풀이
 //
