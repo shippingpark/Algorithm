@@ -16,3 +16,4 @@ func solution(_ clothes:[[String]]) -> Int {
     
     return count.reduce(1) { $0 * $1 } - 1
 }
+
