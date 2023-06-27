@@ -21,3 +21,5 @@ for genre in genresSum.sorted(by: { $0.value > $1.value }) {
   let genre = genre.key
   let musicList = songList.filter{ $0.value.0 == String(genre) }.sorted(by: { $0.value.1 > $1.value.1 })
 }
+
+
