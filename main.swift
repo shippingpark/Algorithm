@@ -1,35 +1,40 @@
 
 
 
-let input = readLine()!.split(separator: " ").map{ Int($0)! }
-var countries:[[Int]] = []
-var compare:Set<[Int]> = []
-for _ in 0..<input[0] {
-    let country = readLine()!.split(separator: " ").map{ Int($0)! }
-    countries.append(country)
-}
 
-countries.sort{
-  if $0[1] != $1[1] {
-      return $0[1] > $1[1]
-  } else if $0[2] != $1[2] {
-      return $0[2] > $1[2]
-  } else {
-      return $0[3] > $1[3]
-  }
-}
 
-var 중복 = 0
-for i in 0..<input[0] {
-    let beforeCount = compare.count
-    compare.insert(countries[i][1...3].map{ Int(exactly: $0)! })
-    
-    중복 = (beforeCount == compare.count) ? 중복 + 1 : 0
-  
-    if countries[i][0] == input[1] {
-      print(i+1-중복)
-    }
-}
+
+
+
+//let input = readLine()!.split(separator: " ").map{ Int($0)! }
+//var countries:[[Int]] = []
+//var compare:Set<[Int]> = []
+//for _ in 0..<input[0] {
+//    let country = readLine()!.split(separator: " ").map{ Int($0)! }
+//    countries.append(country)
+//}
+//
+//countries.sort{
+//  if $0[1] != $1[1] {
+//      return $0[1] > $1[1]
+//  } else if $0[2] != $1[2] {
+//      return $0[2] > $1[2]
+//  } else {
+//      return $0[3] > $1[3]
+//  }
+//}
+//
+//var 중복 = 0
+//for i in 0..<input[0] {
+//    let beforeCount = compare.count
+//    compare.insert(countries[i][1...3].map{ Int(exactly: $0)! })
+//
+//    중복 = (beforeCount == compare.count) ? 중복 + 1 : 0
+//
+//    if countries[i][0] == input[1] {
+//      print(i+1-중복)
+//    }
+//}
 
 
 
