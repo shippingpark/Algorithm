@@ -5,34 +5,34 @@
 //  Created by 박혜운 on 2023/08/09.
 //
 
-import Foundation
-
-let n = Int(readLine()!)! //4
-let line = readLine()! //1 2 3 4
-var find: [Int] = line.split(separator: " ").compactMap{ Int($0) }
-
-if find == find.sorted(by: <) {
-  print("-1")
-} else {
-  var largeIndex = 0
-  for index in 0..<(n-1) {
-    if find[index] > find[index + 1] {
-      largeIndex = index
-    }
-  }
-
-  var changeIndex = 0
-  for index in ((largeIndex+1)..<n) {
-    if find[index] < find[largeIndex] {
-      changeIndex = index
-    }
-  }
-  
-  find.swapAt(largeIndex, changeIndex)
-  find[(largeIndex+1)..<n].sort(by: >)
-
-  print(find.map{ String($0) }.joined(separator: " "))
-}
+//import Foundation
+//
+//let n = Int(readLine()!)! //4
+//let line = readLine()! //1 2 3 4
+//var find: [Int] = line.split(separator: " ").compactMap{ Int($0) }
+//
+//if find == find.sorted(by: <) {
+//  print("-1")
+//} else {
+//  var largeIndex = 0
+//  for index in 0..<(n-1) {
+//    if find[index] > find[index + 1] {
+//      largeIndex = index
+//    }
+//  }
+//
+//  var changeIndex = 0
+//  for index in ((largeIndex+1)..<n) {
+//    if find[index] < find[largeIndex] {
+//      changeIndex = index
+//    }
+//  }
+//
+//  find.swapAt(largeIndex, changeIndex)
+//  find[(largeIndex+1)..<n].sort(by: >)
+//
+//  print(find.map{ String($0) }.joined(separator: " "))
+//}
 
 // MARK: - 참고 풀이
 
