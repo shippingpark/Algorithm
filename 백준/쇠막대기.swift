@@ -30,4 +30,29 @@ func solveStickDivideCount(s: String) {
 }
 
 solveStickDivideCount(s: s)
-// solveStickDivideCount(s: "(((()(()()))(())()))(()())") // 24
+
+
+// MARK: - 2
+
+let plate = readLine()!
+var before = ""
+var count = 0
+var result = 0
+
+for now in plate {
+  if now == "(" {
+    count += 1
+  } else {
+    count -= 1
+    if before == "(" {
+      result += count
+    } else {
+      result += count + 1
+    }
+    result += stack.last == "(" ? stack.count :
+  }
+  before = now
+}
+
+print(result)
+
