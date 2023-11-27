@@ -33,4 +33,10 @@ solve2(s: s)
 
 
 
+// MARK: - 3
+// 2차 시 보다 간략하게 풀 수 있었지만, 가독성은 더 나쁘다 
+
+let line = readLine()!
+
+print(min(line.split(separator:"0").count, line.split(separator:"1").count))
 
