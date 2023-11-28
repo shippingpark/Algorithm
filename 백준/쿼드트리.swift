@@ -50,3 +50,44 @@ func quadTree(rowStart: Int, rowFinish: Int, colStart: Int, colFinish: Int) -> S
 }
 
 print(quadTree(rowStart: 0, rowFinish: N, colStart: 0, colFinish: N))
+
+
+// MARK: - 2
+
+let N = Int(readLine()!)!
+let block: [[String]] = (0..<N).map{ _ in readLine()!.map{ String($0) } }
+
+func quadTree2(rowRange: ClosedRange<Int>, colRange: ClosedRange<Int>) -> String {
+  let rowStart = rowRange.lowerBound
+  let rowFinish = rowRange.upperBound
+  let colStart = colRange.lowerBound
+  let colFinish = colRange.upperBound
+  let rowMidLeft = (rowFinish - rowStart) / 2 + rowStart
+  let colMidLeft = (colFinish - colStart) / 2 + colStart
+  
+  guard rowStart != rowFinish || colStart != colFinish else { return block[rowStart][colStart] }
+  
+  let rowUp = rowStart...rowMidLeft
+  let rowDown = (rowMidLeft+1)...rowFinish
+  let colLeft = colStart...colMidLeft
+  let colRight = (colMidLeft+1)...colFinish
+  
+  var line = ""
+  
+  for section in 0..<4 {
+    switch section {
+    case 0: line += quadTree2(rowRange: rowUp, colRange: colLeft)
+    case 1: line += quadTree2(rowRange: rowUp, colRange: colRight)
+    case 2: line += quadTree2(rowRange: rowDown, colRange: colLeft)
+    case 3: line += quadTree2(rowRange: rowDown, colRange: colRight)
+    default: break
+    }
+  }
+  if !line.contains("0") || !line.contains("1") {
+    return String(line.first!)
+  } else {
+    return "(" + line + ")"
+  }
+}
+
+print(quadTree2(rowRange: 0...(N-1), colRange: 0...(N-1)))
