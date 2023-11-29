@@ -49,3 +49,22 @@ var cardFrequency: [String.SubSequence: Int] = .init()
 
 sangGeonsDeck.forEach{ cardFrequency[$0, default: 0] += 1 }
 print(check.map{ cardFrequency[$0] ?? 0 }.map{ String($0) }.joined(separator: " "))
+
+
+
+// MARK: - 4
+// 시간초과 해소
+// 왜 시간초과 난 지는 여전히 잘 모르겠다 
+
+let _ = readLine()
+let deck = readLine()!.split(separator: " ")
+let _ = readLine()
+let check = readLine()!.split(separator: " ")
+
+var myDeckCount: [String.SubSequence: Int] = .init()
+
+deck.forEach{ myDeckCount[$0, default: 0] += 1 }
+print(check.map{ myDeckCount[$0] ?? 0 }.map{ String($0) }.joined(separator: " ")) // 시간초과 해소
+
+//let result = check.map{ myDeckCount[$0, default: 0] }
+//result.forEach{ print($0, terminator: " ") } // 시간초과 발생

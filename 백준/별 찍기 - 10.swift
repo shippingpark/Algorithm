@@ -34,3 +34,24 @@ func block(N: Int) -> Array<Array<String>> {
   return result
 }
 print(block(N: N).map{ $0.joined() }.joined(separator: "\n"))
+
+
+// MARK: - 2
+
+let N = Int(readLine()!)!
+
+func drawStar(N: Int) -> [[String]] {
+  guard N != 1 else { return [["*"]] }
+  
+  let block = drawStar(N: N/3)
+  let topBottom = block.map{ $0 + $0 + $0 }
+  let mid = block.map{ $0 + Array(repeating: " ", count: N/3) + $0 }
+  var result: [[String]] = .init()
+  result.append(contentsOf: topBottom)
+  result.append(contentsOf: mid)
+  result.append(contentsOf: topBottom)
+  
+  return result
+}
+
+print(drawStar(N: N).map{ $0.joined() }.joined(separator: "\n"))
