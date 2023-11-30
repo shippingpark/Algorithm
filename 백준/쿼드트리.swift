@@ -91,3 +91,63 @@ func quadTree2(rowRange: ClosedRange<Int>, colRange: ClosedRange<Int>) -> String
 }
 
 print(quadTree2(rowRange: 0...(N-1), colRange: 0...(N-1)))
+
+
+// MARK: - 3
+
+let N = Int(readLine()!)!
+
+let map = (0..<N).map{ readLine()!.split(separator: " ") }
+
+func quadTree3(rowRange: ClosedRange, colRange: ClosedRange) -> String {
+  guard (rowRange.lowerBound != rowRange.upperBound)
+          || (colRange.lowerBound != colRange.upperBound) else { return map[rowRange.lowerBound][colRange.lowerBound] }
+  let rowMidLeft = (rowRange.upperBound - rowRange.lowerBound) / 2 + rowRange.lowerBound
+  let colMidUp = (colRange.upperBound - colRange.lowerBound) / 2 + colRange.lowerBound
+  
+  let upLeft = quadTree3(rowRange: rowRange.lowerBound...rowMidLeft, colRange: colRange.lowerBound...colMidUp)
+  let upRight = quadTree3(rowRange: rowRange.lowerBound...rowMidLeft, colRange: (colMidUp+1)...colRange.upperBound)
+  let downLeft = quadTree3(rowRange: (rowMidLeft+1)...rowRange.upperBound, colRange: colRange.lowerBound...colMidUp)
+  let downRight = quadTree3(rowRange: (rowMidLeft+1)...rowRange.upperBound, colRange: (colMidUp+1)...colRange.upperBound))
+  
+  let result = upLeft + upRight + downLeft + downRight
+  
+  if !result.contains("1") || !result.contains("0") {
+    return upLeft
+  } else {
+    return "(" + result + ")"
+  }
+}
+
+
+
+
+// MARK: - 3
+// split 썼더니 안됌... 바로 map 때려야 했음. 아마 분리하는 "" 를 쓸 수 없으니 그랬던 듯 
+
+let N = Int(readLine()!)!
+var board: [[String]] = .init()
+(0..<N).forEach{ _ in board.append(readLine()!.map{ String($0) })}
+
+func quadTree3(rowRange: ClosedRange<Int>, colRange: ClosedRange<Int>) -> String {
+  guard (rowRange.lowerBound != rowRange.upperBound)
+          || (colRange.lowerBound != colRange.upperBound) else { return board[rowRange.lowerBound][colRange.lowerBound] }
+  let rowMidLeft = (rowRange.upperBound - rowRange.lowerBound) / 2 + rowRange.lowerBound
+  let colMidUp = (colRange.upperBound - colRange.lowerBound) / 2 + colRange.lowerBound
+  
+  let upLeft = quadTree3(rowRange: rowRange.lowerBound...rowMidLeft, colRange: colRange.lowerBound...colMidUp)
+  let upRight = quadTree3(rowRange: rowRange.lowerBound...rowMidLeft, colRange: (colMidUp+1)...colRange.upperBound)
+  let downLeft = quadTree3(rowRange: (rowMidLeft+1)...rowRange.upperBound, colRange: colRange.lowerBound...colMidUp)
+  let downRight = quadTree3(rowRange: (rowMidLeft+1)...rowRange.upperBound, colRange: (colMidUp+1)...colRange.upperBound)
+  
+  let result = upLeft + upRight + downLeft + downRight
+  
+  if !result.contains("1") || !result.contains("0") {
+    return upLeft
+  } else {
+    return "(" + result + ")"
+  }
+}
+
+print(quadTree3(rowRange: 0...(N-1), colRange: 0...(N-1)))
+

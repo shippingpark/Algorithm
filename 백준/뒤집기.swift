@@ -40,3 +40,12 @@ let line = readLine()!
 
 print(min(line.split(separator:"0").count, line.split(separator:"1").count))
 
+
+
+
+// MARK: - 4
+
+let line = readLine()!
+
+print(min(line.split(separator: "0").count, line.split(separator: "1").count))
+
