@@ -78,3 +78,30 @@ for char in line {
 }
 
 print(result)
+
+
+// MARK: - 4
+// 레이저와 아예 그 파이프가 끊어지는 경우를 좌우를 기준으로 분리해야 함.
+// 이 부분이 헷갈려서 이상하게 품. 조건 분기 잘 할 것
+
+let line = readLine()!
+var before: Character = "("
+var count = 0
+var result = 0
+
+for char in line {
+  if char == "(" {
+    count += 1
+  } else {
+    count -= 1
+    if before == ")" { // 레이저 쏜 게 아님, 내려가는 거
+      result += 1
+    } else { // 레이저 쏜 거 
+      result += count
+    }
+  }
+  before = char
+}
+
+print(result)
+

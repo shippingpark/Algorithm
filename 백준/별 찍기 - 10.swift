@@ -55,3 +55,24 @@ func drawStar(N: Int) -> [[String]] {
 }
 
 print(drawStar(N: N).map{ $0.joined() }.joined(separator: "\n"))
+
+// MARK: - 3
+
+let n = Int(readLine()!)!
+
+func madeStar(N: Int) -> [[String]] {
+  guard N != 1 else { return [["*"]] }
+  
+  let block = madeStar(N: N/3)
+  let line = block.map{ $0 + $0 + $0 }
+  let mid = block.map{ $0 + Array(repeating: " ", count: N/3) + $0 }
+  var result: [[String]] = .init()
+  result.append(contentsOf: line)
+  result.append(contentsOf: mid)
+  result.append(contentsOf: line)
+  
+  return result
+}
+
+print(madeStar(N: n).map{ $0.joined() }.joined(separator: "\n"))
+

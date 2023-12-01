@@ -58,3 +58,90 @@ nextPoint: while true {
 }
 
 print(count)
+
+
+// MARK: - 2
+// 답은 맞는데, 틀렸다고 출력됌
+// propertyWrapper 써서 그런가? 흠 다음엔 sturct로 만들어서 풀어봐야겠다 
+
+let NM = readLine()!.split(separator: " ").map{ Int($0)! }
+let N = NM[0]
+let M = NM[1]
+let info = readLine()!.split(separator: " ").map{ Int($0)! }
+var room = (0..<N).map{ _ in readLine()!.split(separator: " ") }
+let dirR = [-1, 0, 1, 0] // 북 서 남 동
+let dirC = [0, -1, 0, 1]
+
+//typealias Position = (r: Int, c: Int)
+
+@propertyWrapper
+struct HeadDirection {
+  var wrappedValue: Int {
+    didSet {
+      self.wrappedValue = (wrappedValue + 4) % 4
+    }
+  }
+  
+  init(wrappedValue: Int) {
+    self.wrappedValue = wrappedValue
+  }
+}
+
+@propertyWrapper
+struct Position {
+  var wrappedValue: (r: Int, c: Int)? {
+    didSet {
+      if let wrappedValue = wrappedValue,
+         (wrappedValue.r >= 0) && (wrappedValue.r < N) && (wrappedValue.c >= 0) && (wrappedValue.c < M) && (room[wrappedValue.r][wrappedValue.c] != "1") {
+        self.wrappedValue = wrappedValue
+      } else {
+        self.wrappedValue = nil
+      }
+    }
+  }
+}
+
+func cleanRoom() -> Int {
+  @Position var nowP = (r: info[0], c: info[1])
+  @HeadDirection var nowH = info[2]
+  
+  var cleanCount = 0
+  
+  while true {
+    guard let nowPP = nowP else { break }
+    if room[nowPP.r][nowPP.c] == "0" {
+      room[nowPP.r][nowPP.c] = "-1"
+      cleanCount += 1
+//      print("⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️")
+//      print(room.map{ $0.joined(separator: " ") }.joined(separator: "\n"))
+//      print("⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️")
+    }
+    
+    let fourWay = (0..<4).map{ Position(wrappedValue: (r: nowPP.r + dirR[$0], c: nowPP.c + dirC[$0])).wrappedValue }
+//    print(fourWay)
+    let fourWayCompact = fourWay.compactMap({ $0 })
+    if !fourWayCompact.isEmpty { // 주위에 벽이 아닌 공간이 존재
+      nowH += 1 // 90도 회전
+      
+      if fourWayCompact.map({ room[$0.r][$0.c] == "0" }).contains(true) { // 청소할 곳이 있다면
+        if let newP = fourWay[nowH], room[newP.r][newP.c] == "0" { // 90도 회전한 곳에 자리가 있고, 그게 청소 가능 하다면
+          nowP = newP
+        }
+        continue
+      } else { // 청소할 곳이 없다면
+        nowH += 1 // 뒤로 돌려서
+        if let backP = fourWay[nowH] { // 뒤로 갈 방향 찾고
+          nowH += 2 // 머리는 원상 복귀
+//          print("현재 머리 방향 \(nowH) 현재 위치 \(nowPP)와 뒤로 이동 위치 \(backP)")
+          nowP = backP
+        } else {
+          break
+        }
+      }
+    }
+  }
+  
+  return cleanCount
+}
+
+print(cleanRoom())
