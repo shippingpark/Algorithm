@@ -39,3 +39,23 @@ if angles.reduce(0, +) != 180 {
   }
 }
 
+
+// MARK: - 3
+
+let angles = (0..<3).map{ _ in Int(readLine()!)! }
+let set = Set(angles)
+
+func triangleType() -> String {
+  if angles.reduce(0, +) != 180 {
+    return "Error"
+  }
+  
+  switch set.count {
+  case 1: return "Equilateral"
+  case 2: return "Isosceles"
+  default: return "Scalene"
+  }
+}
+
+print(triangleType())
+

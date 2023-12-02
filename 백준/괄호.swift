@@ -68,3 +68,27 @@ for _ in 0..<N {
   print(count == 0 ? "YES" : "NO")
 }
 
+// MARK: - 4
+// 고차함수 쓸 때 _ in 안 쓰면 계속 에러남
+
+let N = Int(readLine()!)!
+
+(0..<N).forEach{ _ in
+  let line = readLine()!
+  var count = 0
+  
+  for char in line {
+    if char == "(" {
+      count += 1
+    } else {
+      count -= 1
+      if count < 0 {
+        break
+      }
+    }
+  }
+  
+  print(count == 0 ? "YES" : "NO")
+}
+
+

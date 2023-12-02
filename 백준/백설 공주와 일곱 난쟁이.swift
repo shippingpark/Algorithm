@@ -43,3 +43,26 @@ func removeDwarf(_ array: [Int], _ n: Int) -> [Int] {
 }
 
 print(removeDwarf(ages, 2).map{ String($0) }.joined(separator: " "))
+
+
+// MARK: - 2
+// (i+1) 부터 검증
+// 재귀보다 좀 더 깔끔하게 만들 수 있었던 느낌
+// 왜냐면 재귀는 중도에 멈추는 타이밍 잡기가 어려움, 전체를 다 봐야지 멈추는 느낌
+// 다음 번에 전체를 보지 않고 주어진 것만 돌리는 재귀를 만들어보자
+
+var numbers = (0..<9).map{ _ in Int(readLine()!)! }
+let fullCount = numbers.reduce(0, +)
+
+loop: for i in 0..<9 {
+  for j in (i+1)..<9 { // i 부터가 아니라, i + 1부터
+    if fullCount - numbers[i] - numbers[j] == 100 {
+      numbers.remove(at: j)
+      numbers.remove(at: i)
+      break loop
+    }
+  }
+}
+
+print(numbers.map{ String($0) }.joined(separator: "\n"))
+
