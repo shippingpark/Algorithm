@@ -145,3 +145,37 @@ func cleanRoom() -> Int {
 }
 
 print(cleanRoom())
+
+
+
+// MARK: - 3
+
+let nm = readLine()!.split(separator: " ").map{ Int($0)! }
+let n = nm[0]
+let m = nm[1]
+
+let info = readLine()!.split(separator: " ").map{ Int($0)! }
+var nowP = (info[0], info[1])
+var nowHead = info[2] {
+  didSet {
+    self.nowHead = nowHead % 4
+  }
+}
+
+var map = (0..<n).map{ _ in readLine()!.split(separator: " ") }
+
+let dirC = [-1, 0, 1, 0] // 북 서 남 동
+let dirR = [0, -1, 0, 1]
+
+while true {
+  let fourWay = (0..<4).map{ (nowP.0 + dirR[$0], nowP.1 + dirC[$0]) }
+    .map{ (row, col) in
+      if (row >= 0) && (row < n) && (col >= 0) && (col < m) {
+        return (row, col)
+      } else {
+        return nil
+      }
+    }
+}
+
+

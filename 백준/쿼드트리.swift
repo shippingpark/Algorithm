@@ -151,3 +151,31 @@ func quadTree3(rowRange: ClosedRange<Int>, colRange: ClosedRange<Int>) -> String
 
 print(quadTree3(rowRange: 0...(N-1), colRange: 0...(N-1)))
 
+// MARK: - 4
+// split의 separator 가 ""일 경우 안 잘림. 이럴 땐 map 으로 쪼개기
+let n = Int(readLine()!)!
+let map = (0..<n).map{ _ in readLine()!.map{ $0 } }
+
+func dfs(colRange: ClosedRange<Int>, rowRange: ClosedRange<Int>) -> String {
+  if (colRange.lowerBound == colRange.upperBound) || (rowRange.lowerBound == rowRange.upperBound) {
+    return String(map[colRange.lowerBound][rowRange.lowerBound])
+  }
+  
+  let colMidLeft = (colRange.upperBound - colRange.lowerBound) / 2 + colRange.lowerBound
+  let rowMidLeft = (rowRange.upperBound - rowRange.lowerBound) / 2 + rowRange.lowerBound
+  
+  let upLeft = dfs(colRange: colRange.lowerBound...colMidLeft, rowRange: rowRange.lowerBound...rowMidLeft)
+  let upRight = dfs(colRange: colRange.lowerBound...colMidLeft, rowRange: (rowMidLeft+1)...rowRange.upperBound)
+  let downLeft = dfs(colRange: (colMidLeft+1)...colRange.upperBound, rowRange: rowRange.lowerBound...rowMidLeft)
+  let downRight = dfs(colRange: (colMidLeft+1)...colRange.upperBound, rowRange: (rowMidLeft+1)...rowRange.upperBound)
+  
+  let result = upLeft + upRight + downLeft + downRight
+  
+  if !result.contains("0") || !result.contains("1") {
+    return upLeft
+  } else {
+    return "(" + result + ")"
+  }
+}
+
+print(dfs(colRange: 0...(n-1), rowRange: 0...(n-1)))
