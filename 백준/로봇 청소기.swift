@@ -156,26 +156,52 @@ let m = nm[1]
 
 let info = readLine()!.split(separator: " ").map{ Int($0)! }
 var nowP = (info[0], info[1])
-var nowHead = info[2] {
-  didSet {
-    self.nowHead = nowHead % 4
-  }
-}
+var nowHead = info[2]
 
 var map = (0..<n).map{ _ in readLine()!.split(separator: " ") }
 
-let dirC = [-1, 0, 1, 0] // 북 서 남 동
-let dirR = [0, -1, 0, 1]
+let dirR = [-1, 0, 1, 0] // 북 동 남 서
+let dirC = [0, 1, 0, -1]
+
+var count = 0
 
 while true {
-  let fourWay = (0..<4).map{ (nowP.0 + dirR[$0], nowP.1 + dirC[$0]) }
+  if map[nowP.0][nowP.1] == "0" {
+    switch nowHead {
+    case 0: map[nowP.0][nowP.1] = "⬆️"
+    case 1: map[nowP.0][nowP.1] = "➡️"
+    case 2: map[nowP.0][nowP.1] = "⬇️"
+    default: map[nowP.0][nowP.1] = "⬅️"
+    }
+    count += 1
+  }
+  
+  print("✨✨✨✨✨✨✨✨✨✨✨✨")
+  print(map.map{ $0.joined(separator: " ") }.joined(separator: "\n"))
+  print("✨✨✨✨✨✨✨✨✨✨✨✨")
+  
+  let fourWay: [(Int, Int)?] =
+  (0..<4)
+    .map{ (nowP.0 + dirR[$0], nowP.1 + dirC[$0]) }
     .map{ (row, col) in
-      if (row >= 0) && (row < n) && (col >= 0) && (col < m) {
+      if (row >= 0) && (row < n) && (col >= 0) && (col < m) && (map[row][col] != "1") {
         return (row, col)
       } else {
         return nil
       }
     }
+  
+  if !fourWay.compactMap({ $0 }).filter({ (row, col) in map[row][col] == "0" }).isEmpty { // 4방향 중 청소 가능한 공간이 있다면
+    nowHead = (nowHead + 3) % 4 // 90도 이동하고
+    if let headP = fourWay[nowHead], map[headP.0][headP.1] == "0" { // 앞쪽이 청소 가능하다면
+      nowP = headP
+    }
+    continue
+  } else if let backP = fourWay[(nowHead + 2) % 4] { // 청소 가능한 공간이 없다면
+    nowP = backP
+  } else {
+    break
+  }
 }
 
-
+print(count)

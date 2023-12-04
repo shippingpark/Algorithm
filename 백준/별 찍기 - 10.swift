@@ -76,3 +76,24 @@ func madeStar(N: Int) -> [[String]] {
 
 print(madeStar(N: n).map{ $0.joined() }.joined(separator: "\n"))
 
+
+// MARK: - 4
+// upDown 등등 용도 보다, line 이라는 정적인 명칭이 더 문제를 풀 때 헷갈리지 않았다 
+
+let n = Int(readLine()!)!
+
+func starBlock(lineStarCount: Int) ->[[String]] {
+  guard lineStarCount != 1 else { return [["*"]] }
+  
+  let block = starBlock(lineStarCount: lineStarCount/3)
+  let line = block.map{ $0 + $0 + $0 }
+  let mid = block.map{ $0 + Array(repeating: " ", count: lineStarCount/3) + $0 }
+  var result = [[String]]()
+  result.append(contentsOf: line)
+  result.append(contentsOf: mid)
+  result.append(contentsOf: line)
+  
+  return result
+}
+
+print(starBlock(lineStarCount: n).map{ $0.joined(separator: "") }.joined(separator: "\n"))

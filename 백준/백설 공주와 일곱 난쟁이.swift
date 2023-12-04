@@ -66,3 +66,24 @@ loop: for i in 0..<9 {
 
 print(numbers.map{ String($0) }.joined(separator: "\n"))
 
+
+
+// MARK: - 3
+// 하... i는 포함하는 거 아님! 이번에도 잊어서 틀렸다 주의 
+
+import Foundation
+
+var numbers = (0..<9).map{ _ in Int(readLine()!)! }
+let sum = numbers.reduce(0, +)
+
+loop: for i in 0..<9 {
+  for j in (i+1)..<9 {
+    if sum - numbers[j] - numbers[i] == 100 {
+      numbers.remove(at: j)
+      numbers.remove(at: i)
+      break loop
+    }
+  }
+}
+
+numbers.forEach{ print($0) }
