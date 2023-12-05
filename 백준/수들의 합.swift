@@ -28,3 +28,24 @@ while sum <= S {
 }
 
 print(sum == count ? count : count - 1)
+
+
+// MARK: - 2
+
+let S = Int(readLine()!)!
+var count = 0
+var sum = 0
+
+// 아주 작은 수의 경우 1..<S 로 두면 틀리게 됌. 예를 들어, 1일 경우도 있고.
+// 이 문제는 while 로 푸는 게 더 좋아 보임, 구간이 절대적으로 S의 영향을 받지는 않기 때문
+// 1씩 증가하기에
+
+for i in 1...S {
+  guard sum < S else { break }
+  sum += i
+  count = i
+}
+
+print(sum == S ? count : count - 1)
+
+

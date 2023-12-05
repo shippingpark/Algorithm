@@ -59,3 +59,21 @@ func triangleType() -> String {
 
 print(triangleType())
 
+
+// MARK: - 4
+
+let angles = (0..<3).map{ _ in Int(readLine()!)! }
+let set = Set(angles)
+
+if angles.reduce(0, +) != 180 {
+  print("Error")
+} else {
+  switch set.count {
+  case 1: print("Equilateral") // 전부 같을 때
+  case 2: print("Isosceles") // 한 쌍만 같을 때
+  default: print("Scalene") // 전부 다를 때
+  }
+}
+
+
+
