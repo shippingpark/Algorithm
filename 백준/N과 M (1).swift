@@ -47,3 +47,30 @@ func dp(arr: [Int]) {
 dp(arr: [])
 
 print(result.map{ $0.map{ String($0) }.joined(separator: " ") }.joined(separator: "\n"))
+
+
+// MARK: - 2
+
+let input = Int(readLine()!)!,
+N = input[0],
+M = input[1]
+
+var result = [[Int]]()
+
+func search(arr: [Int] = []) {
+  if arr.count == M {
+    result.append(arr)
+    return
+  }
+  
+  for i in 1...N {
+    if !arr.contains(i) {
+      search(arr: arr + [i])
+    }
+  }
+}
+
+search()
+
+print(result.map{ $0.map{ String($0) }.joined(separator: " ") }.joined(separator: "\n"))
+

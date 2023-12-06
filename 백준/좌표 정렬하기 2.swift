@@ -48,4 +48,15 @@ print(
 )
 
 
+// MARK: - 3
+
+let N = Int(readLine()!)!
+let input = (0..<N)
+  .map{ _ in readLine()!.split(separator: " ").map{ Int($0)! } }
+  .map{ ($0[1], $0[0]) }
+  .sorted(by: <)
+
+input.forEach{ print("\($0.0) \($0.1)") }
+
+
 

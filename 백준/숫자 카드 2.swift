@@ -68,3 +68,17 @@ print(check.map{ myDeckCount[$0] ?? 0 }.map{ String($0) }.joined(separator: " ")
 
 //let result = check.map{ myDeckCount[$0, default: 0] }
 //result.forEach{ print($0, terminator: " ") } // 시간초과 발생
+
+
+// MARK: - 5
+// 시간초과 발생
+// grouping 으로 만들면 발생하는 듯
+
+let _ = readLine()
+let input = readLine()!.split(separator: " "),
+deck = Dictionary(grouping: input, by: { $0 }).mapValues{ $0.count }
+let _ = readLine()
+let check = readLine()!.split(separator: " ")
+let result = check.map{ deck[$0] ?? 0 }.map{ String($0) }
+
+print(result.joined(separator: " "))
