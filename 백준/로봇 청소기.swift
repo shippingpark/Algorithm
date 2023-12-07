@@ -205,3 +205,60 @@ while true {
 }
 
 print(count)
+
+
+
+// MARK: - 4
+
+let input1 = readLine()!.split(separator:" ").map{ Int($0)! },
+N = input1[0], M = input1[1]
+let input2 = readLine()!.split(separator:" ").map{ Int($0)! }
+var nowP = (input2[0], input2[1])
+var head = input2[2]
+var map = (0..<N).map{ _ in readLine()!.split(separator: " ") }
+
+let rowD = [-1, 0, 1, 0] // 북 동 남 서, 회전 방향은 반시계
+let colD = [0, 1, 0, -1]
+
+var count = 0
+
+while true {
+  if map[nowP.0][nowP.1] == "0" { // 청소 안 되어 있으면
+    map[nowP.0][nowP.1] = "-1" // 청소하기
+    count += 1
+  }
+  
+  let fourWay: [(Int, Int)] = (0..<4).map{ (nowP.0 + rowD[$0], nowP.1 + colD[$0]) }
+  let canMoveWay: [Bool] = fourWay
+    .map{ (row, col) in
+      if row >= 0 && row < N && col >= 0 && col < M && map[row][col] != "1" {
+        return true
+      } else { return false }
+    }
+  let canCleanWay: [Bool] = (0..<4)
+    .map{
+      if canMoveWay[$0] { // 이동 가능 하다면
+        let p = fourWay[$0]
+        return map[p.0][p.1] == "0"
+      } else {
+        return false
+      }
+    }
+  
+  if canCleanWay.filter({$0}).isEmpty { // 청소 가능한 구간이 없는 경우
+    if canMoveWay[(head+2)%4] {
+      nowP = fourWay[(head+2)%4]
+    } else {
+      break
+    }
+  } else { // 청소 가능한 구간이 있는 경우
+    head = (head + 3) % 4
+    if canCleanWay[head] {
+      nowP = fourWay[head]
+    }
+  }
+}
+
+print(count)
+
+

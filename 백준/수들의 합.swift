@@ -49,3 +49,17 @@ for i in 1...S {
 print(sum == S ? count : count - 1)
 
 
+// MARK: - 3
+
+let S = Int(readLine()!)!
+var count = 0
+var sum = 0
+
+while sum < S {
+  count += 1
+  sum += count
+}
+
+print(sum == S ? count : count - 1)
+
+

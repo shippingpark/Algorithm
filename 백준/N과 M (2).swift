@@ -15,6 +15,7 @@ N = input[0], M = input[1]
 var result = [[Int]]()
 
 func searchNext(arr: [Int] = [], dot: Int = 1) {
+  
   if arr.count == M {
     result.append(arr)
     return
@@ -28,3 +29,23 @@ func searchNext(arr: [Int] = [], dot: Int = 1) {
 searchNext()
 
 print(result.map{ $0.map{ String($0) }.joined(separator: " ") }.joined(separator: "\n"))
+
+
+// MARK: - 2
+
+let input = readLine()!.split(separator: " ").map{ Int($0)! },
+N = input[0], M = input[1]
+
+func dfs(arr: [Int], start: Int) {
+  if arr.count == M {
+    print(arr.map{ String($0) }.joined(separator: " "))
+    return
+  }
+  
+  for i in start...(N - M + arr.count + 1) {
+    dfs(arr: arr + [i], start: i + 1)
+  }
+}
+
+dfs(arr: [], start: 1)
+

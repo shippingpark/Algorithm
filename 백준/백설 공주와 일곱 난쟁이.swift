@@ -87,3 +87,20 @@ loop: for i in 0..<9 {
 }
 
 numbers.forEach{ print($0) }
+
+
+// MARK: - 4
+
+let ages = (0..<9).map{ _ in Int(readLine()!)! }
+let sum = ages.reduce(0, +)
+
+for i in 0..<8 {
+  for j in (i+1)..<9 {
+    if sum - ages[i] - ages[j] == 100 {
+      for k in ages.indices where k != i && k != j {
+        print(ages[k])
+      }
+    }
+  }
+}
+
