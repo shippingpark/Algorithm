@@ -23,3 +23,20 @@ for _ in 0..<n {
   
   print(result)
 }
+
+// MARK: - 2
+
+let n = Int(readLine()!)!
+
+for _ in 0..<n {
+  let _ = readLine()
+  
+  let map: [Int] = readLine()!.split(separator: " ").map{ Int($0)! }.sorted()
+  var result = Int.min
+  
+  for i in 0..<(map.count-2) {
+    result = max(result, map[i+2] - map[i])
+  }
+  
+  print(result)
+}

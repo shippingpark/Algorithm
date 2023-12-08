@@ -105,3 +105,27 @@ for char in line {
 
 print(result)
 
+
+// MARK: - 5
+
+let line = readLine()!
+var before: Character = "("
+var count = 0
+var result = 0
+
+for char in line {
+  if char == "(" {
+    count += 1
+  } else {
+    count -= 1
+    if before == "(" {
+      result += count
+    } else {
+      result += 1
+    }
+  }
+  before = char
+}
+
+print(result)
+

@@ -74,3 +74,26 @@ search()
 
 print(result.map{ $0.map{ String($0) }.joined(separator: " ") }.joined(separator: "\n"))
 
+
+// MARK: - 3
+
+let input = readLine()!.split(separator: " ").map{ Int($0)! },
+N = input[0], M = input[1]
+
+func dfs(arr: [Int] = []) {
+  if arr.count == M {
+    print(arr.map{ String($0) }.joined(separator: " "))
+    return
+  }
+  
+  for i in 1...N {
+    if !arr.contains(i) {
+      dfs(arr: arr + [i])
+    }
+  }
+}
+
+dfs()
+
+
+

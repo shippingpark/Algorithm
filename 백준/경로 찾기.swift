@@ -96,6 +96,27 @@ print(result.map{ $0.joined(separator: " ") }.joined(separator: "\n"))
 
 // MARK: - 4
 
+let N = Int(readLine()!)!
+let map = (0..<N).map{ _ in readLine()!.split(separator: " ") }
+var result = Array(repeating: Array(repeating: "0", count: N), count: N)
+
+func dfs(node: Int, check: Int) {
+  for i in 0..<N {
+    if map[check][i] == "1" && result[node][i] != "1" {
+      result[node][i] = "1"
+      dfs(node: node, check: i)
+    }
+  }
+}
+
+for i in 0..<N {
+  dfs(node: i, check: i)
+}
+
+print(result.map{ $0.joined(separator: " ") }.joined(separator: "\n"))
+
+
+
 
 // MARK: - 5 플로이드-와샬
 
