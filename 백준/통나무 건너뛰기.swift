@@ -40,3 +40,21 @@ for _ in 0..<n {
   
   print(result)
 }
+
+
+// MARK: - 3
+
+let n = Int(readLine()!)!
+
+for _ in 0..<n {
+  _ = readLine()
+  
+  var count = Int.min
+  let map = readLine()!.split(separator: " ").map{ Int($0)! }.sorted()
+  
+  for i in 0..<(map.count-2) {
+    count = max(count, map[i+2] - map[i])
+  }
+  print(count)
+}
+

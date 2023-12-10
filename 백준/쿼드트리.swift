@@ -179,3 +179,35 @@ func dfs(colRange: ClosedRange<Int>, rowRange: ClosedRange<Int>) -> String {
 }
 
 print(dfs(colRange: 0...(n-1), rowRange: 0...(n-1)))
+
+
+// MARK: - 5
+
+let n = Int(readLine()!)!
+var map = (0..<n).map{ _ in readLine()!.map{ String($0) } }
+
+func dfs(rowRange: ClosedRange<Int>, colRange: ClosedRange<Int>) -> String {
+  let midLeft = (colRange.upperBound - colRange.lowerBound) / 2 + colRange.lowerBound
+  let midUp = (rowRange.upperBound - rowRange.lowerBound) / 2 + rowRange.lowerBound
+  
+  let left = colRange.lowerBound...midLeft
+  let right = (midLeft+1)...colRange.upperBound
+  let up = rowRange.lowerBound...midUp
+  let down = (midUp+1)...rowRange.upperBound
+  
+  let a = dfs(rowRange: left, colRange: up)
+  let b = dfs(rowRange: right, colRange: up)
+  let c = dfs(rowRange: right, colRange: down)
+  let d = dfs(rowRange: left, colRange: down)
+
+  let result = a + b + c + d
+  
+  if !result.contains("0") || !result.contains("1") {
+    return a
+  } else {
+    return "(" + result + ")"
+  }
+}
+
+print(dfs(rowRange: 0...(n-1), colRange: 0...(n-1)))
+

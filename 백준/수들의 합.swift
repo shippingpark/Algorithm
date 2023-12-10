@@ -63,3 +63,16 @@ while sum < S {
 print(sum == S ? count : count - 1)
 
 
+// MARK: - 4
+
+let n = Int(readLine()!)!
+var result = 0
+var sum = 0
+
+while sum < n {
+  result += 1
+  sum += result
+}
+
+print(sum == n ? result : result - 1)
+

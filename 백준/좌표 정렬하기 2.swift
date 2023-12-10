@@ -59,4 +59,17 @@ let input = (0..<N)
 input.forEach{ print("\($0.0) \($0.1)") }
 
 
+// MARK: - 4
+
+let n = Int(readLine()!)!
+
+let arr = (0..<n)
+  .map{ _ in readLine()!.split(separator: " ").map{ Int($0)! } }
+  .map{ ($0[1], $0[0]) }
+  .sorted(by: <)
+
+for result in arr {
+  print("\(result[1]) \(result[0])")
+}
+
 

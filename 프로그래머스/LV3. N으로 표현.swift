@@ -48,7 +48,9 @@ func solution(_ N:Int, _ number:Int) -> Int {
       str += "\(N)"
     }
     dp[i].insert(Int(str)!) // 반복된 문자열을 숫자로 변환하여 삽입
-    if Int(str)! == number{result = min(result, i)} // 변환된 숫자가 number와 같은 경우 result 업데이트
+    if Int(str)! == number {
+      result = min(result, i)
+    } // 변환된 숫자가 number와 같은 경우 result 업데이트
   }
   if result == Int.max { // 결과가 업데이트되지 않았다면 -1 반환
     result = -1
@@ -86,4 +88,62 @@ func solution(_ N:Int, _ number:Int) -> Int {
   var answer = -1 // 결과 초기화. 찾을 수 없는 경우 -1을 반환하기 위함
   dfs(N, number, 0, 0, &answer) // DFS 시작
   return answer // 결과 반환
+}
+
+
+
+// MARK: - 2
+
+func solution(_ N:Int, _ number:Int) -> Int { // N을 사용하여 number를 만드는데 필요한 N의 갯수 반환
+  var dp = Array(repeating: Set<Int>(), count: 9)
+  var result = Int.max
+  
+  for i in 1..<9 { // N을 i번 사용해서 만들 수 있는 수들의 집합
+    for j in 1..<i { // i 보다 작은 수 j
+      for k in dp[i-j] { // N을 (i-j) 번 사용하여 만들 수 있는 수들의 집합
+        for l in dp[j] { // N을 j번 사용하여 만들 수 있는 수들의 집합
+          
+          if k - l > 0 { // 앞의 경우의 수가 뒤의 경우의 수보다 크면
+            dp[i].insert(k - l) // d[i-j] - d[j]
+            if k - l == number { // 음수 값이 원하는 값이라면
+              result = min(result, i)
+            }
+          }
+          
+          if l != 0 && k != 0 { // 1 이상이니까 분자가 (l) 인 경우도 제외
+            dp[i].insert(k/l)
+            if k / l == number {
+              result = min(result, i)
+            }
+          }
+          
+          dp[i].insert(k + l)
+          dp[i].insert(k * l)
+          
+          if k + l == number {
+            result = min(result, i)
+          }
+          if k * l == number {
+            result = min(result, i)
+          }
+        }
+      }
+    }
+    
+    var str = ""
+    for _ in 1...i { //i개로 구성된 문자
+      str += "\(N)"
+    }
+    
+    dp[i].insert(Int(str)!)
+    if Int(str)! == number {
+      result = min(result, i)
+    }
+  }
+  
+  if result == Int.max {
+    result = -1
+  }
+  
+  return result
 }
