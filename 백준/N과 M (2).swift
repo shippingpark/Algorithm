@@ -70,3 +70,31 @@ func dfs(arr: [Int] = [], idx: Int = 0) {
 }
 
 dfs()
+
+
+// MARK: - 4
+// 이전에 했던 경우는 포함하면 안됨.
+// for 문을 돌려서 이전에 쌓았던 것을 지나치면 반드시 초반에서 차이가 생기므로 중복 안 생김 (검토할 필요가 없음)
+// 그렇다면 이 문제는 for를 돌리며 한 depth씩 깊어지면 됨
+// 이동할 때 그 이전의 값 이후부터 시작해야하므로 start index를 파라미터로 넘기는 것이 좋을 듯
+// 시간복잡도는 그 전에 도달했던 것에 다시 돌아오지 않으므로
+// 수열을 만드는 과정에서, 각 숫자를 선택하는 데는 최대 N가지의 선택이 가능하고, 이러한 선택은 M번 반복됩니다. 그러나 오름차순을 유지해야 하기 때문에, 실제 선택의 수는 종종 N보다 적을 수 있습니다.
+// O(N^M)
+
+let input = readLine()!.split(separator: " ").map{ Int($0)! },
+N = input[0],
+M = input[1]
+
+func dfs(arr: [Int] = [], now: Int = 1) {
+  if arr.count == M {
+    print(arr.map{ String($0) }.joined(separator: " "))
+    return
+  }
+  
+  for i in now...(N - M + arr.count + 1) { // ClosedRange 일 때는 Upper와 lower가 같아도 괜춚 
+    dfs(arr: arr + [i], now: i + 1)
+  }
+}
+
+dfs()
+

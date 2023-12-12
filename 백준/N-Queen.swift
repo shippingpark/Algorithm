@@ -185,5 +185,43 @@ solution(n: n)
 
 // MARK: - 2
 
+let n = Int(readLine()!)!
+var board = Array(repeating: -1, count: n)
+var visited = Array(repeating: false, count: n)
+var count = 0
+
+func promising(row: Int) -> Bool {
+  for i in 0..<row {
+    if board[row] == board[i] || row - i == abs(board[row] - board[i]) {
+      return false
+    }
+  }
+  return true
+}
+
+func backTracking(row: Int) {
+  if row == n { // 어디서 row 값이 추가되는 지 확인하자. row가 목표에 도달하면 그 값이 n-1이다.
+    count += 1
+    return
+  }
+  
+  for i in 0..<n {
+    guard !visited[i] else { continue }
+    board[row] = i
+    if promising(row: row) {
+      visited[i] = true
+      backTracking(row: row + 1)
+      visited[i] = false
+    }
+  }
+}
+
+backTracking(row: 0)
+print(count)
+
+
+
+
+
 
 

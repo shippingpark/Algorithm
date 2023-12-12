@@ -75,5 +75,19 @@ if angles.reduce(0, +) != 180 {
   }
 }
 
+// MARK: - 5
+let angles = (0..<3).map{ _ in Int(readLine()!)! }
+let set = Set(angles)
+
+if angles.reduce(0, +) != 180 {
+  print("Error")
+} else if set.count == 1 {
+  print("Equilateral")
+} else if set.count == 2 {
+  print("Isosceles")
+} else {
+  print("Scalene")
+}
+
 
 
