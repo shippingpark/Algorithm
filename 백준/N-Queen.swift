@@ -102,11 +102,11 @@ func solution(_ n:Int) -> Int {
   var chess = Array(repeating: -1, count: n)
   var answer = 0
   
-  // 유망성 검사
-  func checkArrangeQueen(row: Int) -> Bool {
-    for i in 0..<row {
+  // 유효성 검사
+  func checkArrangeQueen(row: Int) -> Bool { // 해당 행에 두는 게 가능한가?
+    for i in 0..<row { // 인덱스 위치가 곧 행을 의미 / 그 행의 몇 번째 열에 있는 지 확인 하는 과정
       if chess[i] == chess[row] || abs(chess[row] - chess[i]) == abs(row - i) {
-        // 같은 열이거나 대각선일 경우
+        // 같은 열에 존재하는 체스가 있거나, 열과 행의 차가 같을 때 == 기울기가 같으면 대각선 불가
         return false
       }
     }
@@ -140,6 +140,47 @@ func solution(_ n:Int) -> Int {
   
   return answer
 }
+
+
+// 직접 풀어보기
+func solution(n: Int) {
+  var visited = Array(repeating: false, count: n)
+  var board = Array(repeating: -1, count: n)
+  var count = 0
+  
+  func promising(row: Int) -> Bool {
+    for compareRow in 0..<row { // 해당 row 값이 괜찮은 지 이전 값들의 위치와 비교하는 과정
+      if board[compareRow] == board[row] || ( abs(board[compareRow] - board[row]) == (row - compareRow) ) {
+        return false
+      }
+    }
+    return true // 문제가 없다면 해당 row의 col에 두는 거 ㅇㅋ
+  }
+  
+  func dfs(row: Int) {
+    if row == n {
+      count += 1
+      return
+    }
+    
+    for checkCol in 0..<n {
+      guard !visited[checkCol] else { continue }
+      board[row] = checkCol
+      if promising(row: row) { // 해당 row의 col값이 이전 col 값들과 비교하여 유효하다면
+        visited[row] = true
+        dfs(row: row + 1) // 다음 행도 검사
+        visited[row] = false
+      }
+    }
+  }
+  
+  dfs(row: 0)
+  
+  print(count)
+}
+let n = Int(readLine()!)!
+solution(n: n)
+
 
 
 // MARK: - 2

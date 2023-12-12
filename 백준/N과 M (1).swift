@@ -96,4 +96,24 @@ func dfs(arr: [Int] = []) {
 dfs()
 
 
+// MARK: - 4
+// 뎁스가 8까지 진행될 수 있기 때문에 최댓값이 O(8^8)
+
+let input = readLine()!.split(separator: " ").map{ Int($0)! } ,
+N = input[0],
+M = input[1]
+
+func dfs(arr: [Int] = []) {
+  if arr.count == M {
+    print(arr.map{ String($0) }.joined(separator: " "))
+  }
+  
+  for i in 1...N {
+    if !arr.contains(i) {
+      dfs(arr: arr + [i])
+    }
+  }
+}
+
+dfs()
 

@@ -187,6 +187,10 @@ let n = Int(readLine()!)!
 var map = (0..<n).map{ _ in readLine()!.map{ String($0) } }
 
 func dfs(rowRange: ClosedRange<Int>, colRange: ClosedRange<Int>) -> String {
+  if rowRange.upperBound == rowRange.lowerBound || colRange.upperBound == colRange.lowerBound {
+    return map[rowRange.lowerBound][colRange.lowerBound]
+  }
+  
   let midLeft = (colRange.upperBound - colRange.lowerBound) / 2 + colRange.lowerBound
   let midUp = (rowRange.upperBound - rowRange.lowerBound) / 2 + rowRange.lowerBound
   
@@ -195,10 +199,10 @@ func dfs(rowRange: ClosedRange<Int>, colRange: ClosedRange<Int>) -> String {
   let up = rowRange.lowerBound...midUp
   let down = (midUp+1)...rowRange.upperBound
   
-  let a = dfs(rowRange: left, colRange: up)
-  let b = dfs(rowRange: right, colRange: up)
-  let c = dfs(rowRange: right, colRange: down)
-  let d = dfs(rowRange: left, colRange: down)
+  let a = dfs(rowRange: up, colRange: left)
+  let b = dfs(rowRange: up, colRange: right)
+  let c = dfs(rowRange: down, colRange: left)
+  let d = dfs(rowRange: down, colRange: right)
 
   let result = a + b + c + d
   
@@ -210,4 +214,3 @@ func dfs(rowRange: ClosedRange<Int>, colRange: ClosedRange<Int>) -> String {
 }
 
 print(dfs(rowRange: 0...(n-1), colRange: 0...(n-1)))
-

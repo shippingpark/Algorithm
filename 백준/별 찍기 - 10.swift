@@ -97,3 +97,27 @@ func starBlock(lineStarCount: Int) ->[[String]] {
 }
 
 print(starBlock(lineStarCount: n).map{ $0.joined(separator: "") }.joined(separator: "\n"))
+
+
+// MARK: - 5
+// 커다란 반복적인 패턴을 만들 때, 가로로 연장하고 싶으면 2차원 배열을 만든 뒤 각 1차원들을 이어나가는 방식으로 (더하는 )
+
+func star(n: Int) -> [[String]] {
+  if n == 1 {
+    return [["*"]]
+  }
+  
+  let block = star(n: n / 3)
+  let line = block.map{ $0 + $0 + $0 }
+  let mid = block.map{ $0 + Array(repeating: " ", count: n/3) + $0 }
+  
+  var result = line
+  result.append(contentsOf: mid)
+  result.append(contentsOf: line)
+  
+  return result
+}
+
+let n = Int(readLine()!)!
+print(star(n: n).map{ $0.joined(separator: "") }.joined(separator: "\n") )
+

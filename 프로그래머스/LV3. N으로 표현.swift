@@ -60,7 +60,7 @@ func solution(_ N:Int, _ number:Int) -> Int {
 
 // 참고한 두 번째 풀이
 // 완성되면 어떻게 끝낼 지 항상 고민이었는데, inout으로 값의 변동을 반영할 수 있음을 이해
-  // N과 number는 고정값, depth
+// N과 number는 고정값, depth
 func dfs(_ N: Int, _ number: Int, _ depth: Int, _ temp: Int, _ answer: inout Int)  {
   
   // depth가 8을 초과하면 더 이상 탐색하지 않음 (조건에 따라 최대 8번만 사용 가능)
@@ -147,3 +147,62 @@ func solution(_ N:Int, _ number:Int) -> Int { // N을 사용하여 number를 만
   
   return result
 }
+
+
+// MARK: - 3
+
+// f(3) = f(1) + f(2) // f(3) = f(2) + f(1)
+func dfs(_ N: Int, _ number: Int, _ depth: Int, _ temp: Int, _ answer: inout Int)  {
+  
+  // depth가 8을 초과하면 8번 이상을 사용하는 것이므로 아예 끝냄
+  if depth > 8 {
+    return
+  }
+  
+  // temp(현재까지의 계산 결과)가 number와 같고, 현재 depth가 현재까지의 최소 depth보다 작거나, answer가 -1이면 answer 업데이트
+  if temp == number && (answer > depth || answer == -1) {
+    answer = depth
+  }
+  
+  var calc = 0 // N을 연속으로 이어 붙인 숫자를 만들기 위한 변수
+  
+  for index in 0..<8 { // 여기서의 index는 몇 번의 N으로 구서된 문자를 쓸 건지에 해당함
+    calc = calc * 10 + N // 예를 들어, N이 5이고 index가 2이면 calc는 555가 됨
+    // 다음 깊이(depth)로 재귀 호출하여 네 가지 사칙연산 적용
+    dfs(N, number, depth + 1 + index, temp + calc, &answer) // 덧셈
+    dfs(N, number, depth + 1 + index, temp - calc, &answer) // 뺄셈
+    dfs(N, number, depth + 1 + index, temp * calc, &answer) // 곱셈
+    dfs(N, number, depth + 1 + index, temp / calc, &answer) // 나눗셈 (0으로 나누는 경우는 별도 처리 필요)
+  }
+}
+
+
+// MARK: - 3
+
+func solution(_ N:Int, _ number:Int) -> Int {
+  var answer = -1 // 결과 초기화. 찾을 수 없는 경우 -1을 반환하기 위함
+  
+  func dfs(depth: Int, temp: Int, answer: inout Int) {
+    if depth > 8 {
+      return
+    }
+    
+    if temp == number && (answer > depth || answer == -1) {
+      answer = depth
+    }
+    
+    var word = 0
+    for i in 0..<8 {
+      word = word * 10 + N // 자릿수를 한 칸 씩 밀면서 1의 자리 수에 N
+      dfs(depth: depth + 1 + i, temp: temp + word, answer: &answer)
+      dfs(depth: depth + 1 + i, temp: temp - word, answer: &answer)
+      dfs(depth: depth + 1 + i, temp: temp * word, answer: &answer)
+      dfs(depth: depth + 1 + i, temp: temp / word, answer: &answer)
+    }
+  }
+  
+  
+  dfs(depth: 0, temp: 0, answer: &answer) // DFS 시작
+  return answer // 결과 반환
+}
+
