@@ -91,7 +91,7 @@ func dfs(arr: [Int] = [], now: Int = 1) {
     return
   }
   
-  for i in now...(N - M + arr.count + 1) { // ClosedRange 일 때는 Upper와 lower가 같아도 괜춚 
+  for i in now...(N - M + arr.count + 1) { // ClosedRange 일 때는 Upper와 lower가 같아도 괜춚
     dfs(arr: arr + [i], now: i + 1)
   }
 }
