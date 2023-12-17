@@ -84,7 +84,39 @@ print("\(result[0]) \(result[1])")
 
 
 
+// MARK: - 3
+// 옛날처럼 밑바닥부터 정답을 반환하는 방식은 ClosedRange를 사용했었다
+// 하지만 그러한 방법은 물리적인 공간을 많이 차지하게 된다
+// 해당 풀이는 예전에 별로 패턴 그릴 때 썼던 방법으로, 어떤 형태로 잘리는 지 알 필요 없는 해당 문제의 경우
+// mark 2 풀이가 더 좋아서 다시 풀어보았다
+// allSatisfy 너무 좋다 기억하자
+// + 가장 큰 정사각형 구하는 문제는 어떻게 할까? (size가 변동되니까)
 
+let n = Int(readLine()!)!
+let map = (0..<n).map{ _ in readLine()!.split(separator: " ").map{ Int($0)! } }
+var result = [0, 0]
 
+func task(r: Int, c: Int, size: Int) {
+  let type = map[r][c]
+  var success = true
+  for i in r..<(r+size) {
+    if !map[i][c..<c+size].allSatisfy({ $0 == type }) {
+      success = false
+      break
+    }
+  }
+  
+  if success {
+    result[type] += 1
+  } else {
+    for nr in stride(from: r, to: r+size, by: size/2) {
+      for nc in stride(from: c, to: c+size, by: size/2) {
+        task(r: nr, c: nc, size: size / 2)
+      }
+    }
+  }
+}
 
+task(r: 0, c: 0, size: n)
 
+print("\(result[0])\n\(result[1])")

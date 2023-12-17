@@ -117,3 +117,26 @@ func dfs(arr: [Int] = []) {
 
 dfs()
 
+
+// MARK: - 5
+// 이전 값을 포함하지 않아야 하고, 오름차순은 아니다.
+// 그러니 첫 번째 값에 N이 들어갈 수 있다 
+
+let input = readLine()!.split(separator: " ").map{ Int($0)! },
+N = input[0], M = input[1]
+
+func dfs(arr: [Int] = []) {
+  if arr.count == M {
+    print(arr.map{ String($0) }.joined(separator: " "))
+    return
+  }
+  
+  for i in 1...N {
+    if !arr.contains(i) {
+      dfs(arr: arr + [i])
+    }
+  }
+}
+
+dfs()
+

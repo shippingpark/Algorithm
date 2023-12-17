@@ -259,3 +259,43 @@ func bp(r: Int = 0) {
 bp()
 
 print(result)
+
+
+// MARK: - 3
+// 백트래킹 풀이
+// r 값은 순차적으로 증가하니까 같은 r 값이 중복되는 지 걸러 줄 필요가 없지만,
+// c 값은 전체 영역을 대상으로 적용되므로, 미리미리 저장해 두고 promising 을 확인하지 이전 단계에 중복을 걸러주자 
+let n = Int(readLine()!)!
+var count = 0
+var queen = [Int](repeating: -1, count: n) // index는 r / value는 c queen[r] = c
+var visited = [Bool](repeating: false, count: n)
+
+func promising(r: Int) -> Bool {
+  for i in 0..<r {
+    if r == i || r - i == abs(queen[r] - queen[i]) {
+      return false
+    }
+  }
+  return true
+}
+
+func task(r: Int) {
+  if r == n {
+    count += 1
+    return
+  }
+  
+  for i in 0..<n {
+    guard !visited[i] else { continue }
+    queen[r] = i
+    if promising(r: r) {
+      visited[i] = true
+      task(r: r + 1)
+      visited[i] = false
+    }
+  }
+}
+
+task(r: 0)
+
+print(count)

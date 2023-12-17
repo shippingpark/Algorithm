@@ -72,4 +72,19 @@ for result in arr {
   print("\(result[1]) \(result[0])")
 }
 
+// MARK: - 5
+let n = Int(readLine()!)!
+
+var map = (0..<n).map{ _ in
+  readLine()!
+    .split(separator: " ")
+    .map{ Int($0)! }
+  }
+  .map{ (y: $0[1], x: $0[0]) }
+// (y, x)
+
+map
+  .sorted(by: <) // by를 꼭 써줘야 함
+  .forEach{ print("\($0.x) \($0.y)") }
+
 

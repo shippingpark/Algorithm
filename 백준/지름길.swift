@@ -62,7 +62,70 @@ print(result)
 
 
 
-// MARK: - 3 : DP 풀이 확인
+// MARK: - 3
+// DP 풀이로 풀려고 했지만, 이 문제가 동적 계획법일까?
+// 오히려 모든 경로를 탐색하며 갱신하는 그리디 또는 탐색에 가까운 것 같다
+// 하지만 DP 풀이를 보자.
+// 해당 문제는 지름길로 가냐, 그냥 도로로 가냐를 매번 체크하며 지난 DP 배열을 갱신시킬 수 있다
+// 문제는 이해했는데 이렇게까지 하는 이유를 모르겠다... start를 인덱스로 활용하기 위해 어쩔 수 없는 선택이었겠지...?
 
+
+// 지름길의 개수, 고속도로 길이
+var N: Int = 0
+var D: Int = 0
+
+// 지름길의 위치, 거리를 저장하는 배열
+var path = [[(end: Int, length: Int)]](repeating: [], count: MAX)
+
+// 특정 위치까지 가는 최단 거리를 저장하는 테이블
+var dist = [Int](repeating: 0, count: MAX)
+
+func input() {
+    let inputs = readLine()!.split(separator: " ").map { Int($0)! }
+    N = inputs[0]
+    D = inputs[1]
+
+    // i 위치까지 가는 최단 거리 초기화
+    for i in 0...D {
+        dist[i] = i
+    }
+
+    for _ in 0..<N {
+        let shortcut = readLine()!.split(separator: " ").map { Int($0)! }
+        let start = shortcut[0]
+        let end = shortcut[1]
+        let length = shortcut[2]
+
+        if end > D || end - start <= length {
+            continue
+        }
+
+        path[start].append((end, length))
+    }
+}
+
+input()
+
+var before: Int = 0
+for i in 0...D {
+    before = i == 0 ? -1 : dist[i - 1]
+    
+    // 지름길 반영한 최단 거리와 일반 고속도로 이용한 거리 중 최소값
+    dist[i] = min(dist[i], before + 1)
+
+    // i 위치에서 출발하는 지름길이 있다면
+    for edge in path[i] {
+        let end = edge.end
+        let length = edge.length
+
+        // 최단 거리 테이블 갱신
+        if dist[end] > dist[i] + length {
+            dist[end] = dist[i] + length
+        }
+    }
+}
+
+// D까지 가는 최단 거리 출력
+print(dist[D])
 
 

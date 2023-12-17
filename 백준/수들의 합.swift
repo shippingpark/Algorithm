@@ -76,3 +76,19 @@ while sum < n {
 
 print(sum == n ? result : result - 1)
 
+
+// MARK: - 5
+// 편의를 위해 변수를 많이 줄였지만 이런 풀이는 좋지 않다
+// result 변수를 따로 만들어서 진행하면 좋겠다
+
+let N = Int(readLine()!)!
+var natural = 0
+var sum = 0
+
+while sum < N {
+  natural += 1 // 이게 아래 줄로 이동하면 natural과 result 간에 1 차이가 생긴다 while 이 끝날 때 natural이 다음 루프를 대비하고 있지 않아야 이해하기 쉬운 코드가 된다. 그러므로 다음 코드에 대비하지 않도록, sum += natural 윗 줄에 위치시켰다
+  sum += natural
+}
+
+print(sum == N ? natural : natural - 1)
+

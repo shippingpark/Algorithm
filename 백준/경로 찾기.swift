@@ -118,7 +118,35 @@ print(result.map{ $0.joined(separator: " ") }.joined(separator: "\n"))
 
 
 
-// MARK: - 5 플로이드-와샬
+// MARK: - 5 
+// 플로이드-와샬은 적합하지 않은 풀이로 보고 풀지 않는다
+// 플로이드 와샬은 경로에 길이가 있는 경우? 에 사용하는 알고리즘
+// bfs 로 풀었음
+// 변수를 어떻게 해야할까? 흠... 헷갈리는군
 
+let n = Int(readLine()!)!
+let map = (0..<n).map{ _ in readLine()!.split(separator: " ")}
+var result = Array(repeating: Array(repeating: "0", count: n), count: n)
 
+func bfs(node: Int) {
+  var arr = [node]
+  while !arr.isEmpty {
+    let root = arr.removeFirst()
 
+    for i in 0..<n {
+      guard result[node][i] != "1" else { continue } // 중복 체크
+      if map[root][i] == "1" {
+        result[node][i] = "1"
+        arr.append(i)
+      }
+    }
+  }
+}
+
+for i in 0..<n {
+  bfs(node: i)
+}
+
+result.forEach { line in
+  print(line.joined(separator: " "))
+}
