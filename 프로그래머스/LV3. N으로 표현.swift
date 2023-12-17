@@ -206,3 +206,32 @@ func solution(_ N:Int, _ number:Int) -> Int {
   return answer // 결과 반환
 }
 
+
+// MARK: - 4
+
+func solution(_ N:Int, _ number:Int) -> Int {
+  var answer = Int.max
+  func dfs(depth: Int, temp: Int) {
+    if depth > 8 {
+      return
+    }
+    
+    if temp == number {
+      answer = min(answer, depth)
+    }
+    
+    var word = 0
+    for i in 0..<8 {
+      word = 10 * word + N // i를 곱하는 게 아니라 word 를 곱해야 함
+      dfs(depth: depth + 1 + i, temp: temp + word)
+      dfs(depth: depth + 1 + i, temp: temp - word)
+      dfs(depth: depth + 1 + i, temp: temp * word)
+      dfs(depth: depth + 1 + i, temp: temp / word)
+    }
+  }
+  
+  dfs(depth: 0, temp: 0)
+  
+  return answer == Int.max ? -1 : answer
+  
+}

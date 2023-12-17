@@ -221,7 +221,41 @@ print(count)
 
 
 
+// MARK: - 3
+// 백트래킹으로 풀어야 함
 
+let N = Int(readLine()!)!
+var queen = Array(repeating: -1, count: N) // index는 r, 값은 c / // queen[r] = c
+var visited = Array(repeating: false, count: N)
+var result = 0
 
+func promising(r: Int, c: Int) -> Bool {
+  for checkR in 0..<r {
+    if queen[checkR] == c || r - checkR == abs(c - queen[checkR]) {
+      return false
+    }
+  }
+  return true
+}
 
+func bp(r: Int = 0) {
+  if r == N {
+    result += 1
+    return
+  }
+  
+  for nc in 0..<N {
+    guard !visited[nc] else { continue }
+    queen[r] = nc
+    if promising(r: r, c: nc) {
+      visited[nc] = true
+      bp(r: r+1)
+      visited[nc] = false
+    }
+    // 여기에 visited false 조건 줘서 틀림 ...... 
+  }
+}
 
+bp()
+
+print(result)

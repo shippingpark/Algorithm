@@ -262,3 +262,55 @@ while true {
 print(count)
 
 
+// MARK: - 5
+
+let input = readLine()!.split(separator: " ").map{ Int($0)! },
+N = input[0],
+M = input[1]
+let input2 = readLine()!.split(separator: " ").map{ Int($0)! }
+
+var room = (0..<N).map{ _ in readLine()!.split(separator: " ").map{ String($0) } }
+var nowP = (input2[0], input2[1])
+var nowH = input2[2] {
+  didSet {
+    nowH = oldValue % 4
+  }
+}
+var count = 0
+
+let dr = [-1, 0, 1, 0] // 북 동 남 서
+let dc = [0, 1, 0, -1]
+
+func isRoom(p: (Int, Int)) -> Bool {
+  return p.0 >= 0 && p.0 < N && p.1 >= 0 && p.1 < M
+}
+
+loop: while true {
+  if room[nowP.0][nowP.1] == "0" {
+    room[nowP.0][nowP.1] == "완"
+    count += 1
+  }
+  
+  let fourWay: [(Int, Int)] = (0..<4).map{ i in (nowP.0 + dr[i], nowP.1 + dc[i]) }
+  
+  for way in fourWay {
+    if isRoom(way) && room[way.0][way.1] == "0" {
+      nowH += 3
+      let check = fourWay[nowH]
+      if isRoom(p: check) && room[check.0][check.1] == "0" {
+        nowP = check
+      }
+      continue loop
+    }
+  }
+  
+  nowH += 2
+  let check = fourWay[nowH]
+  if isRoom(p: check) && room[check.0][check.1] != "1" {
+    nowP = check
+  } else {
+    break
+  }
+}
+
+print(count)

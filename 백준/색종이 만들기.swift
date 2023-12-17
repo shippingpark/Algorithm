@@ -42,3 +42,49 @@ let result = dfs(rowArange: 0...(n-1), colArange: 0...(n-1)).map{ $0 }
 
 print(result.filter{ $0 == "0" }.count)
 print(result.filter{ $0 == "1" }.count)
+
+
+
+// MARK: - 2
+// Range를 통해서 값을 전부 반환 받아서 계산하는 이전 풀이 방식이 아닌,
+// 큰 조각부터 검사하고, 만약 그 조각이 원하는 검사를 만족하지 않는다면 작게 줄여서 다시금 검사하는 방식으로
+// 무커 풀이 참고
+// 원래 풀던 dfs 방식과 사고하는 방식이 다른 느낌이다
+// 하지만 한 번 훑는 다는 것에 초점을 맞추면, 매번 다시 훑는 아래 방식보다 위의 방식이 더 좋아보인다 
+
+let N = Int(readLine()!)!
+let paper: [[Int]] = (0..<N).map{ _ in readLine()!.split(separator: " ").map{ Int($0)! } }
+var result: Array<Int> = [0, 0]
+
+func task(r: Int = 0, c: Int = 0, size: Int = N) {
+  let type = paper[r][c]
+  var canCrop = true
+  
+  for i in r..<(r+size) {
+    if !paper[i][c..<c+size].allSatisfy{ $0 == type } {
+      canCrop = false
+      break
+    }
+  }
+  
+  if canCrop {
+    result[type] += 1
+  } else {
+    for rn in stride(from: r, to: r+size, by: size/2) {
+      for cn in stride(from: c, to: c+size, by: size/2) {
+        task(r: rn, c: cn, size: size/2)
+      }
+    }
+  }
+}
+
+task()
+
+print("\(result[0]) \(result[1])")
+
+
+
+
+
+
+

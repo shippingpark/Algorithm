@@ -58,3 +58,19 @@ for _ in 0..<n {
   print(count)
 }
 
+
+// MARK: - 3
+
+let n = Int(readLine()!)!
+
+for _ in 0..<n {
+  let count = readLine()
+  let trees = readLine()!.split(separator: " ").map{ Int($0)! }.sorted()
+  var result = Int.max
+  
+  for i in Stride(from: 0, to: count-2, by: 2) {
+    result = min(result, trees[i+2] - trees[i])
+  }
+  print(result)
+}
+

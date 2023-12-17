@@ -104,3 +104,22 @@ for i in 0..<8 {
   }
 }
 
+// MARK: - 5
+
+var numbers = (0..<9).map{ _ in Int(readLine()!)! }
+let sum = numbers.reduce(0, +)
+
+loop: for i in 0..<9 {
+  for j in (i+1)..<9 { // ✨ 매번 여기서 틀림 ㅜ i+1 부터 시작하기! 
+    if sum - numbers[i] - numbers[j] == 100 {
+      numbers.remove(at: j)
+      numbers.remove(at: i)
+      for num in numbers {
+        print(num)
+      }
+      break loop
+    }
+  }
+}
+
+
