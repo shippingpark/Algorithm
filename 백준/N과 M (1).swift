@@ -120,7 +120,7 @@ dfs()
 
 // MARK: - 5
 // 이전 값을 포함하지 않아야 하고, 오름차순은 아니다.
-// 그러니 첫 번째 값에 N이 들어갈 수 있다 
+// 그러니 첫 번째 값에 N이 들어갈 수 있다
 
 let input = readLine()!.split(separator: " ").map{ Int($0)! },
 N = input[0], M = input[1]

@@ -98,3 +98,23 @@ func dfs(arr: [Int] = [], now: Int = 1) {
 
 dfs()
 
+
+// MARK: - 5
+let input = readLine()!.split(separator: " ").map{ Int($0)! },
+N = input[0], M = input[1]
+
+func dfs(arr:[Int] = [], num: Int = 1) {
+  
+  if arr.count == M {
+    print(arr.map{ String($0) }.joined(separator: " "))
+    return
+  }
+  
+  guard num <= N else { return }
+  for i in num...N {
+    dfs(arr: arr + [i], num: i + 1)
+  }
+}
+
+dfs()
+

@@ -8,8 +8,8 @@
 import Foundation
 
 let input = readLine()!.split(separator: " ").map{ Int($0)! },
-N = input[0],
-D = input[1]
+    N = input[0],
+    D = input[1]
 
 let map = (0..<N)
   .map{ _ in readLine()!.split(separator: " ").map{ Int($0)! } }
@@ -81,51 +81,75 @@ var path = [[(end: Int, length: Int)]](repeating: [], count: MAX)
 var dist = [Int](repeating: 0, count: MAX)
 
 func input() {
-    let inputs = readLine()!.split(separator: " ").map { Int($0)! }
-    N = inputs[0]
-    D = inputs[1]
-
-    // i 위치까지 가는 최단 거리 초기화
-    for i in 0...D {
-        dist[i] = i
+  let inputs = readLine()!.split(separator: " ").map { Int($0)! }
+  N = inputs[0]
+  D = inputs[1]
+  
+  // i 위치까지 가는 최단 거리 초기화
+  for i in 0...D {
+    dist[i] = i
+  }
+  
+  for _ in 0..<N {
+    let shortcut = readLine()!.split(separator: " ").map { Int($0)! }
+    let start = shortcut[0]
+    let end = shortcut[1]
+    let length = shortcut[2]
+    
+    if end > D || end - start <= length {
+      continue
     }
-
-    for _ in 0..<N {
-        let shortcut = readLine()!.split(separator: " ").map { Int($0)! }
-        let start = shortcut[0]
-        let end = shortcut[1]
-        let length = shortcut[2]
-
-        if end > D || end - start <= length {
-            continue
-        }
-
-        path[start].append((end, length))
-    }
+    
+    path[start].append((end, length))
+  }
 }
 
 input()
 
 var before: Int = 0
 for i in 0...D {
-    before = i == 0 ? -1 : dist[i - 1]
+  before = i == 0 ? -1 : dist[i - 1]
+  
+  // 지름길 반영한 최단 거리와 일반 고속도로 이용한 거리 중 최소값
+  dist[i] = min(dist[i], before + 1)
+  
+  // i 위치에서 출발하는 지름길이 있다면
+  for edge in path[i] {
+    let end = edge.end
+    let length = edge.length
     
-    // 지름길 반영한 최단 거리와 일반 고속도로 이용한 거리 중 최소값
-    dist[i] = min(dist[i], before + 1)
-
-    // i 위치에서 출발하는 지름길이 있다면
-    for edge in path[i] {
-        let end = edge.end
-        let length = edge.length
-
-        // 최단 거리 테이블 갱신
-        if dist[end] > dist[i] + length {
-            dist[end] = dist[i] + length
-        }
+    // 최단 거리 테이블 갱신
+    if dist[end] > dist[i] + length {
+      dist[end] = dist[i] + length
     }
+  }
 }
 
 // D까지 가는 최단 거리 출력
 print(dist[D])
 
+// MARK: - 4 : DP
 
+let input = readLine()!.split(separator: " ").map{ Int($0)! },
+N = input[0], D = input[1]
+var short: [[(finish: Int, len: Int)]] = Array(repeating: [], count: D+1)
+var road: [Int] = (0...D).map{ $0 }
+// road[D] == D
+
+for _ in 1...N {
+  let input = readLine()!.split(separator: " ").map{ Int($0)! }
+  guard input[0] < D else { continue } // 이 코드 유무로 런타임 에러 발생
+  short[input[0]].append( (finish: input[1], len: input[2]) )
+}
+
+for i in 0...D {
+  let beforeLen = i == 0 ? -1 : road[i - 1]
+  road[i] = min(road[i], beforeLen + 1) // 지름길이 적용된 값이냐 아니냐
+  
+  for short in short[i] { // 지름길이 있다면
+    guard short.finish <= D else { continue }
+    road[short.finish] = min(road[short.finish], road[i] + short.len)
+  }
+}
+
+print(road[D])

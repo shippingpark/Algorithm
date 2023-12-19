@@ -21,3 +21,19 @@ for _ in 0..<n {
   var maxT = speed.map{ max($0, abs(L-$0)) }
   print("\(minT.max()!) \(maxT.max()!)")
 }
+
+
+// MARK: - 2
+
+let n = Int(readLine()!)!
+
+for _ in 0..<n {
+  let input = readLine()!.split(separator: " ").map{ Int($0)! },
+  L = input[0], N = input[1]
+  
+  var speed = (0..<N).map{ _ in Int(readLine()!)! }
+  let minT = speed.map{ min($0, abs(L-$0)) }
+  let maxT = speed.map{ max($0, abs(L-$0)) }
+  print("\(minT.max()!) \(maxT.max()!)") // 집단 시간 중 가장 긴 게 집단의 최소값
+}
+
