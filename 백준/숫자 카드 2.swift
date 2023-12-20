@@ -82,3 +82,38 @@ let check = readLine()!.split(separator: " ")
 let result = check.map{ deck[$0] ?? 0 }.map{ String($0) }
 
 print(result.joined(separator: " "))
+
+// MARK: - 6
+
+_ = readLine()
+let mine = readLine()!.split(separator: " ").map{ Int($0)! }
+_ = readLine()
+let check = readLine()!.split(separator: " ").map{ Int($0)! }
+
+let myCardDic: Dictionary<Int, Int> = {
+  let dic = [Int: Int]()
+  for card in mine {
+    dic[card, default: 0] += 1
+  }
+  return dic
+}()
+
+check.forEach{ print(dic[$0] ?? 0) }
+
+// MARK: - 7
+
+_ = readLine()
+let mine = readLine()!.split(separator: " ").map{ Int($0)! }
+_ = readLine()
+let check = readLine()!.split(separator: " ").map{ Int($0)! }
+
+let myCardDic: Dictionary<Int, Int> = {
+  var dic = [Int: Int]()
+  for card in mine {
+    dic[card, default: 0] += 1
+  }
+  return dic
+}()
+
+print(check.map{ String(myCardDic[$0] ?? 0) }.joined(separator: " "))
+

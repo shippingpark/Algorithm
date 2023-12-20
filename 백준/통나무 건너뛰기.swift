@@ -74,3 +74,17 @@ for _ in 0..<n {
   print(result)
 }
 
+// MARK: - 4
+
+let n = Int(readLine()!)!
+
+for _ in 0..<n {
+  let count = Int(readLine()!)!
+  let trees = readLine()!.split(separator: " ").map{ Int($0)! }.sorted()
+  var sum = 0
+  for i in 0..<(count-2) {
+    sum = max(sum, trees[i+2] - trees[i])
+  }
+  print(sum)
+}
+

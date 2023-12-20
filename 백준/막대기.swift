@@ -63,3 +63,11 @@ while n != 0 {
 print(fullCount)
 
 
+// MARK: - 3
+// 남의 풀이를 가져왔다
+// 2진수로 풀면 쉬운 거였구나...^^ ⭐️특정 값으로 나누어지는 경우에는 반드시 n진수의 활용을 고려하여야 겠다
+
+let n = Int(readLine()!)!
+let str = String(n, radix: 2) // 주어진 값이 2진수로 뽀개면 얼마나 뽀개지는 지 확인할 수 있다
+let c = str.filter{ $0 == "1" }.count
+print(c)

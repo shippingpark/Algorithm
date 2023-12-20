@@ -62,5 +62,42 @@ while true {
 }
 
 
-// MARK: - 2 DP
+// MARK: - 2 BFS
+// 최단거리를 구하는데 유용한 BFS
+// 방문 2차원 배열을 전부 Int.max로 채운 뒤
+// 다음 경로가 다음 경로 맵 + 현재 경로 방문 보다 큰 지 판별하여 갱신해 주었다
+// 만약 방문하지 않은 곳이라면 당연히 큰 값이 존재할 테니 갱신되고
+// 만약 방문했더라면 최솟값이냐 아니냐에 따라 갱신된다 
 
+var count = 0
+while true {
+  guard let N = Int(readLine()!), N != 0 else { break }
+  
+  let map = (0..<N).map{ _ in readLine()!.split(separator: " ").map{ Int($0)! } }
+  var visit = map.map{ $0.map{ _ in Int.max } }
+  visit[0][0] = map[0][0]
+
+  let dr = [-1, 1, 0, 0]
+  let dc = [0, 0, -1, 1]
+  
+  func bfs() -> Int {
+    var Q = [(r: 0, c: 0)]
+    var sum = 0
+    
+    while !Q.isEmpty {
+      let (r, c) = Q.removeFirst()
+      
+      for i in 0..<4 {
+        let (nr, nc) = (r + dr[i], c + dc[i])
+        guard nr >= 0 && nr < N && nc >= 0 && nc < N else { continue }
+        guard visit[nr][nc] > visit[r][c] + map[nr][nc] else { continue }
+        visit[nr][nc] = visit[r][c] + map[nr][nc]
+        Q.append( (nr, nc) )
+      }
+    }
+    
+    return visit[N-1][N-1]
+  }
+  count += 1
+  print("Problem \(count): \(bfs())")
+}
