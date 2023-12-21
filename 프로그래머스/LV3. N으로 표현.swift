@@ -235,3 +235,33 @@ func solution(_ N:Int, _ number:Int) -> Int {
   return answer == Int.max ? -1 : answer
   
 }
+
+// MARK: - 5
+
+func solution(_ N:Int, _ number:Int) -> Int {
+  var result = Int.max
+  
+  func dfs(depth: Int, temp: Int) {
+    guard depth <= 8 else { return }
+    if temp == number {
+      result = min(result, depth)
+      return
+    }
+    
+    var num = 0
+    for i in 0..<8 {
+      num = 10 * num + N
+      dfs(depth: depth + i + 1, temp: temp + num)
+      dfs(depth: depth + i + 1, temp: temp - num)
+      dfs(depth: depth + i + 1, temp: temp / num)
+      dfs(depth: depth + i + 1, temp: temp * num)
+    }
+  }
+  dfs(depth: 0, temp: 0)
+  
+  return result == Int.max ? -1 : result
+}
+
+print(solution(5, 12))
+
+

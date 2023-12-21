@@ -42,3 +42,40 @@ func dfs(y: Int = 0, x: Int = 0) -> Int {
 }
 
 print(dfs())
+
+// MARK: - 2
+// 가능한 모든 경로를 구하는 문제이므로 BFS로 풀면 안됌
+// DFS로 풀어야 함
+// 하지만 DFS로만 풀면 M, N 이 너무 커서 모두 탐색하기엔 부담이 됌
+// 따라서 값을 누적해 가는 DP 와 함께 풀이
+
+let input = readLine()!.split(separator: " ").map{ Int($0)! },
+N = input[0], M = input[1]
+
+let map = (0..<N).map{ _ in readLine()!.split(separator: " ").map{ Int($0)! } }
+var dp = Array(repeating: Array(repeating: -1, count: M), count: N)
+let rd = [-1, 1, 0, 0]
+let cd = [0, 0, -1, 1]
+
+func dfs(_ r: Int = 0, _ c: Int = 0) -> Int {
+  if (r, c) == (N-1, M-1) {
+    return 1
+  }
+  
+  if dp[r][c] != -1 { // 방문한 적이 있다면 방문 횟수 반환
+    return dp[r][c]
+  }
+  
+  dp[r][c] = 0
+  
+  for i in 0..<4 {
+    let (rn, cn) = (r + rd[i], c + cd[i])
+    guard rn >= 0 && rn < N && cn >= 0 && cn < M else { continue }
+    if map[rn][cn] < map[r][c] {
+      dp[r][c] += dfs(rn, cn) // 앞선 경로가 얼마나 많은 성공 가짓수를 가졌는 지 더한다
+    }
+  }
+  return dp[r][c]
+}
+
+print(dfs())

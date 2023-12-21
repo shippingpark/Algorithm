@@ -59,3 +59,12 @@ let zeroSection = line.split(separator: "1")
 
 print(min(oneSection.count, zeroSection.count))
 
+
+// MARK: - 6
+
+let line = readLine()!
+let one = line.split(separator: "1")
+let zero = line.split(separator: "0")
+
+print(min( one.count, zero.count ))
+
