@@ -51,3 +51,25 @@ for _ in 0..<n {
   print(dp[goalMoney])
 }
 
+
+// MARK: - 2
+
+let T = Int(readLine()!)!
+for _ in 0..<T {
+  let N = Int(readLine()!)!
+  let coin = readLine()!.split(separator: " ").map{ Int($0)! }
+  let M = Int(readLine()!)!
+  var dp = Array(repeating: 0, count: M+1)
+  dp[0] = 1
+  
+  for i in coin {
+    guard i <= M else { continue }
+    for j in i...M {
+      dp[j] += dp[j-i]
+    }
+  }
+  
+  print(dp[M])
+}
+
+

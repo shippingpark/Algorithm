@@ -101,3 +101,34 @@ while true {
   count += 1
   print("Problem \(count): \(bfs())")
 }
+
+
+// MARK: - 3
+// 최소 경로는 BFS
+// 재방문이지만, 최소 경로를 찾아야 할 때에는 비교를 통해 갱신
+// 아예 Viste을 Int.max로 생성하기
+
+var count = 0
+while true{
+  guard let N = Int(readLine()!), N != 0 else { break }
+  let map = (0..<N).map{ _ in readLine()!.split(separator: " ").map{ Int($0)! } }
+  var visit = Array(repeating: Array(repeating: Int.max, count: N), count: N)
+  visit[0][0] = map[0][0] // visit 만들 때 첫 구간은 누적되지 않으니 직접 초기화 해주기 (그래야 아래 로직상 문제가 없음)
+  let dr = [-1, 1, 0, 0]
+  let dc = [0, 0, -1, 1]
+  var Q = [(r: 0, c: 0)]
+  
+  while !Q.isEmpty {
+    let now = Q.removeFirst()
+    for i in 0..<4 {
+      let (nr, nc) = (now.r + dr[i], now.c + dc[i])
+      guard nr >= 0 && nr < N && nc >= 0 && nc < N else { continue }
+      if visit[nr][nc] > visit[now.r][now.c] + map[nr][nc] { // 새로운 값이 현재 누적보다 더 작다면
+        visit[nr][nc] = visit[now.r][now.c] + map[nr][nc] // 갱신
+        Q.append((nr, nc))
+      }
+    }
+  }
+  count += 1
+  print("Problem \(count): \(visit[N-1][N-1])")
+}

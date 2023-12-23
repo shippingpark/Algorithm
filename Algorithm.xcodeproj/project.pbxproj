@@ -181,6 +181,11 @@
 		CE894C9D2A1CBE4E0011DFF2 /* 요세푸스 문제.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "요세푸스 문제.swift"; sourceTree = "<group>"; };
 		CE894C9E2A1D905D0011DFF2 /* 두 큐 합 같게 만들기.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "두 큐 합 같게 만들기.swift"; sourceTree = "<group>"; };
 		CE9986F12B2B6077002F3C5E /* 막대기.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "막대기.swift"; sourceTree = "<group>"; };
+		CE9986F22B2F5FD4002F3C5E /* 개미 4307.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "개미 4307.swift"; sourceTree = "<group>"; };
+		CE9986F32B319B47002F3C5E /* 녹색 옷 입은 애가 젤다지?.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "녹색 옷 입은 애가 젤다지?.swift"; sourceTree = "<group>"; };
+		CE9986F42B32E55D002F3C5E /* 내리막길.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "내리막길.swift"; sourceTree = "<group>"; };
+		CE9986FC2B34C472002F3C5E /* 동전.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "동전.swift"; sourceTree = "<group>"; };
+		CE9986FD2B35F2DD002F3C5E /* CCW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CCW.swift; sourceTree = "<group>"; };
 		CE99A92629D696E000D0EA3A /* LV2.[3차] n진수 게임 .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LV2.[3차] n진수 게임 .swift"; sourceTree = "<group>"; };
 		CE9D23B02A846227000DBD24 /* 숫자 정사각형.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "숫자 정사각형.swift"; sourceTree = "<group>"; };
 		CE9D24022A85B874000DBD24 /* 회전하는 큐.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "회전하는 큐.swift"; sourceTree = "<group>"; };
@@ -578,6 +583,11 @@
 				CEE6243A2B28492000C40E39 /* 색종이 만들기.swift */,
 				CE2CA7E12B29FDBD00F4097F /* 지름길.swift */,
 				CE9986F12B2B6077002F3C5E /* 막대기.swift */,
+				CE9986F22B2F5FD4002F3C5E /* 개미 4307.swift */,
+				CE9986F32B319B47002F3C5E /* 녹색 옷 입은 애가 젤다지?.swift */,
+				CE9986F42B32E55D002F3C5E /* 내리막길.swift */,
+				CE9986FC2B34C472002F3C5E /* 동전.swift */,
+				CE9986FD2B35F2DD002F3C5E /* CCW.swift */,
 			);
 			name = "백준";
 			path = "백준";

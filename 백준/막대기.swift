@@ -71,3 +71,5 @@ let n = Int(readLine()!)!
 let str = String(n, radix: 2) // 주어진 값이 2진수로 뽀개면 얼마나 뽀개지는 지 확인할 수 있다
 let c = str.filter{ $0 == "1" }.count
 print(c)
+
+
