@@ -79,3 +79,69 @@ func dfs(_ r: Int = 0, _ c: Int = 0) -> Int {
 }
 
 print(dfs())
+
+
+// MARK: - 3
+
+let input = readLine()!.split(separator: " ").map{ Int($0)! },
+M = input[0], N = input[1]
+let map = (0..<M).map{ _ in readLine()!.split(separator: " ").map{ Int($0)! } }
+var visit = Array(repeating: Array(repeating: -1, count: N), count: M)
+
+let dx = [-1, 1, 0, 0]
+let dy = [0, 0, -1, 1]
+
+func dfs(y: Int, x: Int) -> Int {
+  if (y, x) == (M-1, N-1) {
+    return 1 // 도착지점이라면 1이 완성
+  }
+  if visit[y][x] != -1 { return visit[y][x] } // 방문한 적 있따면 방문횟수 반환
+  
+  visit[y][x] = 0 // 방문 표시
+  
+  for i in 0..<4 {
+    let (nx, ny) = (x + dx[i], y + dy[i])
+    guard nx >= 0 && nx < N && ny >= 0 && ny < M else { continue }
+    if map[ny][nx] < map[y][x] {
+      visit[y][x] += dfs(y: ny, x: nx) // 다음 경로가 가진 유효 도달 , 재귀 호출 개념
+    }
+  }
+  
+  return visit[y][x]
+}
+
+print(dfs(y: 0, x: 0))
+
+
+
+// MARK: - 4
+
+let input = readLine()!.split(separator: " ").map{ Int($0)! },
+M = input[0], N = input[1]
+
+let map = (0..<M).map{ _ in readLine()!.split(separator: " ").map{ Int($0)! } }
+var dp = Array(repeating: Array(repeating: -1, count: N), count: M)
+let dr = [-1, 1, 0, 0]
+let dc = [0, 0, -1, 1]
+
+func dfs(r: Int = 0, c: Int = 0) -> Int {
+  guard (r, c) != (M-1, N-1) else { return 1 }
+  if dp[r][c] != -1 {
+    return dp[r][c]
+  }
+  dp[r][c] = 0 // 방문처리 꼭 해주어야 함 
+  
+  for i in 0..<4 {
+    let (nr, nc) = (r+dr[i], c+dc[i])
+    guard nr >= 0 && nr < M && nc >= 0 && nc < N else {continue}
+    if map[nr][nc] < map[r][c] {
+      dp[r][c] += dfs(r: nr, c: nc)
+    }
+  }
+  return dp[r][c]
+}
+
+print(dfs())
+
+
+

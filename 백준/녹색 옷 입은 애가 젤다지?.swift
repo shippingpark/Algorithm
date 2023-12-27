@@ -132,3 +132,33 @@ while true{
   count += 1
   print("Problem \(count): \(visit[N-1][N-1])")
 }
+
+
+// MARK: - 4
+
+var count = 0
+
+while true {
+  guard let n = Int(readLine()!), n != 0 else { break }
+  let map = (0..<n).map{ _ in readLine()!.split(separator: " ").map{ Int($0)! } }
+  var visit = Array(repeating: Array(repeating: Int.max, count: n), count: n)
+  var Q = [(0, 0)]
+  visit[0][0] = map[0][0]
+  let dr = [-1, 1, 0, 0]
+  let dc = [0, 0, -1, 1]
+  
+  while !Q.isEmpty {
+    let (r, c) = Q.removeFirst()
+    for i in 0..<4 {
+      let (nr, nc) = (r + dr[i], c + dc[i])
+      guard nr >= 0 && nr < n && nc >= 0 && nc < n else { continue }
+      if visit[nr][nc] > map[nr][nc] + visit[r][c] {
+        visit[nr][nc] = map[nr][nc] + visit[r][c]
+        Q.append((nr, nc))
+      }
+    }
+  }
+  count += 1
+  print("Problem \(count): \(visit[n-1][n-1])")
+}
+

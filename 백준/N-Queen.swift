@@ -299,3 +299,42 @@ func task(r: Int) {
 task(r: 0)
 
 print(count)
+
+
+// MARK: - 4
+
+let N = Int(readLine()!)!
+var queen = Array(repeating: 0, count: N)
+var visit = Array(repeating: false, count: N)
+var result = 0
+
+func promising(r: Int) -> Bool {
+  for i in 0..<r {
+    if queen[r] == queen[i] || r - i == abs(queen[r] - queen[i]) {
+      return false
+    }
+  }
+  return true
+}
+
+func back(r: Int = 0) {
+  if r == N {
+    result += 1
+    return
+  }
+  
+  for i in 0..<N {
+    guard !visit[i] else {continue}
+    queen[r] = i
+    if promising(r: r) {
+      visit[i] = true
+      back(r: r+1)
+      visit[i] = false
+    }
+  }
+}
+
+back()
+
+print(result)
+

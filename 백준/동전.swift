@@ -73,3 +73,43 @@ for _ in 0..<T {
 }
 
 
+
+// MARK: - 3
+let n = Int(readLine()!)!
+
+for _ in 0..<n {
+  let typeCount = Int(readLine()!)!
+  let M = readLine()!.split(separator: " ").map{ Int($0)! }
+  let money = Int(readLine()!)!
+  var dp = Array(repeating: 0, count: money + 1)
+  dp[0] = 1
+  
+  for m in M {
+    guard m <= money else { continue }
+    for j in m...money {
+      dp[j] += dp[j-m]
+    }
+  }
+  print(dp[money])
+}
+
+// MARK: - 4
+
+let T = Int(readLine()!)!
+
+for _ in 0..<T {
+  let N = Int(readLine()!)!
+  let MCase = readLine()!.split(separator: " ").map{ Int($0)! }
+  let M = Int(readLine()!)!
+  var dp = Array(repeating: 0, count: M+1)
+  dp[0] = 1 // 0원을 만드는 가짓수는 1개
+  
+  for m in MCase {
+    guard m <= M else { continue }
+    for j in m...M {
+      dp[j] += dp[j-m]
+    }
+  }
+  print(dp[M])
+}
+

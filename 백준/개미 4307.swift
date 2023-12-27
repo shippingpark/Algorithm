@@ -52,3 +52,15 @@ for _ in 0..<n {
   print("\(minT.max()!) \(maxT.max()!)")
 }
 
+// MARK: - 4
+
+let n = Int(readLine()!)!
+
+for _ in 0..<n {
+  let input = readLine()!.split(separator: " ").map{ Int($0)! },
+  L = input[0], antCount = input[1]
+  let speeds = (0..<antCount).map{ _ in Int(readLine()!)! }
+  let minT = speeds.map{ min($0, L-$0) }
+  let maxT = speeds.map{ max($0, L-$0) }
+  print("\(minT.max()!) \(maxT.max()!)")
+}

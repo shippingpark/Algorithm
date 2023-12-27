@@ -153,3 +153,48 @@ for i in 0...D {
 }
 
 print(road[D])
+
+
+// MARK: - 5
+
+let input = readLine()!.split(separator: " ").map{ Int($0)! },
+N = input[0], D = input[1]
+
+let shorts = (0..<N).map{ _ in readLine()!.split(separator: " ").map{ Int($0)! }}
+  .sorted{ $0[0] < $1[0] }
+var result = Int.max
+
+func task(idx: Int = 0, realD: Int = 0, nowP: Int = 0) {
+  guard nowP <= D else { return }
+  result = min(result, (D-nowP) + readD)
+  
+  for i in idx..<N {
+    task(idx: i+1, realD: realD + shorts[i][2], nowP: shorts[i][1])
+  }
+}
+
+print(result)
+
+// MARK: - 6
+
+let input = readLine()!.split(separator: " ").map{ Int($0)! },
+N = input[0], D = input[1]
+
+let shorts = (0..<N).map{ _ in readLine()!.split(separator: " ").map{ Int($0)! }}
+  .sorted{ $0[0] <= $1[0] }
+var result = Int.max
+
+func task(idx: Int = 0, realD: Int = 0, nowP: Int = 0) {
+  guard nowP <= D else { return }
+  result = min(result, (D-nowP)+realD)
+  
+  for i in idx..<N {
+    guard nowP <= shorts[i][0] else { continue }
+    task(idx: i+1, realD: (shorts[i][0]-nowP)+realD+shorts[i][2], nowP: shorts[i][1])
+  }
+}
+
+task()
+
+print(result)
+

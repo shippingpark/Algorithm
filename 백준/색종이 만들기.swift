@@ -120,3 +120,36 @@ func task(r: Int, c: Int, size: Int) {
 task(r: 0, c: 0, size: n)
 
 print("\(result[0])\n\(result[1])")
+
+
+// MARK: - 3
+
+let N = Int(readLine()!)!
+let map = (0..<N).map{ _ in readLine()!.split(separator: " ").map{ Int($0)! } }
+var result = [0, 0]
+
+func task(r: Int = 0, c: Int = 0, size: Int = N) {
+  let type = map[r][c]
+  var success = true
+  for n in 0..<size {
+    if !map[r+n][c..<c+size].allSatisfy({ $0 == type }) {
+      success = false
+      break
+    }
+  }
+  
+  if success {
+    result[type] += 1
+  } else {
+    for nr in stride(from: r, to: r+size, by: size/2) {
+      for nc in stride(from: c, to: c+size, by: size/2) {
+        task(r: nr, c: nc, size: size/2)
+      }
+    }
+  }
+}
+
+task(r: 0, c: 0, size: N)
+
+print(result[0])
+print(result[1])

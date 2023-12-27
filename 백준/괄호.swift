@@ -113,5 +113,24 @@ for _ in 0..<N {
   print(count == 0 ? "YES" : "NO")
 }
 
+// MARK: - 6
 
+let N = Int(readLine()!)!
+
+for _ in 0..<N {
+  let line = readLine()!
+  var result = 0
+  for char in line {
+    if char == "(" {
+      result += 1
+    } else {
+      result -= 1
+      if result < 0 {
+        break
+      }
+    }
+  }
+  
+  print(result == 0 ? "YES" : "NO")
+}
 

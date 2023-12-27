@@ -121,3 +121,25 @@ func star(n: Int) -> [[String]] {
 let n = Int(readLine()!)!
 print(star(n: n).map{ $0.joined(separator: "") }.joined(separator: "\n") )
 
+
+// MARK: - 6
+
+let N = Int(readLine()!)!
+
+func star(n: Int = N) -> [[String]] {
+  if n == 1 {
+    return [["*"]]
+  }
+  
+  let block = star(n: n/3)
+  let line = block.map{ $0 + $0 + $0 }
+  let mid = block.map{ $0 + Array(repeating: " ", count: n/3) + $0 }
+  var result = line
+  result.append(contentsOf:mid)
+  result.append(contentsOf:line)
+  
+  return result
+}
+
+print(star().map{ $0.joined() }.joined(separator: "\n"))
+

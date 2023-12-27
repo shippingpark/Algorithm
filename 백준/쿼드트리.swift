@@ -214,3 +214,35 @@ func dfs(rowRange: ClosedRange<Int>, colRange: ClosedRange<Int>) -> String {
 }
 
 print(dfs(rowRange: 0...(n-1), colRange: 0...(n-1)))
+
+
+
+
+// MARK: - 6
+
+let N = Int(readLine()!)!
+let map = (0..<N).map{ _ in readLine()!.map{ String($0) } }
+
+func task(rowRange: ClosedRange<Int> = (0...N-1), colRange: ClosedRange<Int> = 0...N-1) -> String {
+  let rMid = (rowRange.upperBound - rowRange.lowerBound)/2 + rowRange.lowerBound
+  let cMid = (colRange.upperBound - colRange.lowerBound)/2 + colRange.lowerBound
+  
+  if rowRange.lowerBound == rowRange.upperBound || colRange.lowerBound == colRange.upperBound {
+    return map[rowRange.lowerBound][colRange.lowerBound]
+  }
+  
+  let lUp = task(rowRange: rowRange.lowerBound...rMid, colRange: colRange.lowerBound...cMid)
+  let rUp = task(rowRange: rowRange.lowerBound...rMid, colRange: cMid+1...colRange.upperBound)
+  let lDown = task(rowRange: rMid+1...rowRange.upperBound, colRange: colRange.lowerBound...cMid)
+  let rDown = task(rowRange: rMid+1...rowRange.upperBound, colRange: cMid+1...colRange.upperBound)
+  
+  let result = lUp + rUp + lDown + rDown
+                 
+  if !result.contains("0") || !result.contains("1") {
+    return lUp
+  } else {
+    return "(" + result + ")"
+  }
+}
+
+print(task())
