@@ -314,3 +314,53 @@ loop: while true {
 }
 
 print(count)
+
+// MARK: - 6
+
+let input1 = readLine()!.split(separator: " ").map{ Int($0)! },
+N = input1[0], M = input1[1]
+let input2 = readLine()!.split(separator: " ").map{ Int($0)! }
+var nowP = (input2[0], input2[1])
+var nowH = input2[2]
+var room = (0..<N).map{ _ in readLine()!.split(separator: " ") }
+
+let dr = [-1, 0, 1, 0]
+let dc = [0, 1, 0, -1]
+var result = 0
+
+while true {
+  let (r, c) = nowP
+  if room[r][c] == "0" {
+    room[r][c] = "-1"
+    result += 1
+  }
+  
+  var fourWay: [(Int, Int)?] = Array(repeating: nil, count: 4)
+  var canClean = false
+  
+  for i in 0..<4 {
+    let (cr, cc) = (r+dr[i], c+dc[i])
+    guard cr >= 0 && cc >= 0 && cr < N && cc < M else { continue }
+    fourWay[i] = (cr, cc)
+    if room[cr][cc] == "0" { // 청소되지 않은 방 존재
+      canClean = true
+    }
+  }
+  
+  if canClean { // 청소 가능하다면
+    nowH = (nowH+3)%4 // 반시계 방향 90도 회전
+    if let nP = fourWay[nowH], room[nP.0][nP.1] == "0" { // 만약 한 칸 이동 가능하다면
+      nowP = nP // 이동
+    }
+  } else { // 청소 불가능하다면
+    let backH = (nowH+2)%4 // 뒤로
+    if let nP = fourWay[backH], room[nP.0][nP.1] != "1" { // 벽이 아니라면
+      nowP = nP // 이동하기
+    } else {
+      break
+    }
+  }
+}
+
+print(result)
+
