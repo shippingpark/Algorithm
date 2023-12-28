@@ -122,4 +122,19 @@ loop: for i in 0..<9 {
   }
 }
 
+// MARK: - 6
 
+var len = (0..<9).map{ _ in Int(readLine()!)! }
+let sum = len.reduce(0, +)
+
+loop: for i in 0..<9 {
+  for j in (i+1)..<9 {
+    if sum - len[i] - len[j] == 100 {
+      len.remove(at: j)
+      len.remove(at: i)
+      break loop
+    }
+  }
+}
+
+len.forEach{ print($0) }

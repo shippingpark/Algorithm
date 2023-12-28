@@ -36,3 +36,29 @@ for result in results {
   print(result)
 }
 
+// MARK: - 2
+
+let N = Int(readLine()!)!
+var dic = [String: [String]]()
+
+(0..<N).map { _ in readLine()!.split(separator: " ").map{ String($0) }}
+  .forEach({ dic[$0[0]] = [$0[1], $0[2]] })
+
+func preorder(root: String = "A") -> String {
+  if root == "." { return "" }
+  return root + preorder(root: dic[root]![0]) + preorder(root: dic[root]![1])
+}
+
+func inorder(root: String = "A") -> String {
+  if root == "." { return "" }
+  return inorder(root: dic[root]![0]) + root + inorder(root: dic[root]![1])
+}
+
+func postorder(root: String = "A") -> String {
+  if root == "." { return "" }
+  return postorder(root: dic[root]![0]) + postorder(root: dic[root]![1]) + root
+}
+
+print(preorder())
+print(inorder())
+print(postorder())
