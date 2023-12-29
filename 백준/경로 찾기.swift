@@ -150,3 +150,32 @@ for i in 0..<n {
 result.forEach { line in
   print(line.joined(separator: " "))
 }
+
+// MARK: - 6
+
+let N = Int(readLine()!)!
+let graph = (0..<N).map{ _ in readLine()!.split(separator:" ")
+}
+
+var result = Array(repeating: Array(repeating: "0", count: N), count: N)
+
+func bfs(node: Int) {
+  var Q = [node]
+  
+  while !Q.isEmpty {
+    let root = Q.removeFirst()
+    
+    for i in 0..<N {
+      if map[root][i] == "1" {
+        result[node][i] = "1"
+        Q.append(i)
+      }
+    }
+  }
+}
+
+for i in 0..<N {
+  bfs(node: i)
+}
+
+print(result.map{ $0.joined(separator: " ") }.joined())
