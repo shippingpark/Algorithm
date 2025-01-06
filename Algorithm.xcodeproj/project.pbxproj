@@ -157,12 +157,20 @@
 			);
 			target = F36D51B12D2632FE00B7AB27 /* Backjoon */;
 		};
+		F36D55272D2BB12B00B7AB27 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SpaceComplexity/printSorted.swift,
+			);
+			target = F36D51342D26323700B7AB27 /* DataStructures */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F36D51362D26323700B7AB27 /* DataStructures */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DataStructures; sourceTree = "<group>"; };
 		F36D51B32D2632FF00B7AB27 /* Backjoon */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F36D51B92D26331200B7AB27 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Backjoon; sourceTree = "<group>"; };
 		F36D51BF2D26333100B7AB27 /* Prgrammers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Prgrammers; sourceTree = "<group>"; };
+		F36D55222D2BB11000B7AB27 /* BigO */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F36D55272D2BB12B00B7AB27 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = BigO; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +208,7 @@
 		CEA708A8294C770D00C7B086 = {
 			isa = PBXGroup;
 			children = (
+				F36D55222D2BB11000B7AB27 /* BigO */,
 				CECAC37E29A592C000FF8511 /* main.swift */,
 				F36D51362D26323700B7AB27 /* DataStructures */,
 				F36D51B32D2632FF00B7AB27 /* Backjoon */,
@@ -233,6 +242,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F36D55222D2BB11000B7AB27 /* BigO */,
 			);
 			name = Algorithm;
 			productName = Algorithm;
