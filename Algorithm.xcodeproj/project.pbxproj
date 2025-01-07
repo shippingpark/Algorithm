@@ -55,6 +55,7 @@
 		F36D51352D26323700B7AB27 /* libDataStructures.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDataStructures.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36D51B22D2632FE00B7AB27 /* libBackjoon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBackjoon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36D51BE2D26333100B7AB27 /* libPrgrammers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPrgrammers.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F36D577B2D2CBEA300B7AB27 /* DataStructures.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DataStructures.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -167,7 +168,6 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		F36D51362D26323700B7AB27 /* DataStructures */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DataStructures; sourceTree = "<group>"; };
 		F36D51B32D2632FF00B7AB27 /* Backjoon */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F36D51B92D26331200B7AB27 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Backjoon; sourceTree = "<group>"; };
 		F36D51BF2D26333100B7AB27 /* Prgrammers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Prgrammers; sourceTree = "<group>"; };
 		F36D55222D2BB11000B7AB27 /* BigO */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (F36D55272D2BB12B00B7AB27 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = BigO; sourceTree = "<group>"; };
@@ -208,9 +208,9 @@
 		CEA708A8294C770D00C7B086 = {
 			isa = PBXGroup;
 			children = (
+				F36D577B2D2CBEA300B7AB27 /* DataStructures.playground */,
 				F36D55222D2BB11000B7AB27 /* BigO */,
 				CECAC37E29A592C000FF8511 /* main.swift */,
-				F36D51362D26323700B7AB27 /* DataStructures */,
 				F36D51B32D2632FF00B7AB27 /* Backjoon */,
 				F36D51BF2D26333100B7AB27 /* Prgrammers */,
 				CEA708B2294C770D00C7B086 /* Products */,
@@ -262,9 +262,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				F36D51362D26323700B7AB27 /* DataStructures */,
 			);
 			name = DataStructures;
 			packageProductDependencies = (
