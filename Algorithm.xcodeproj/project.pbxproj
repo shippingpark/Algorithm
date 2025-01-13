@@ -52,10 +52,10 @@
 /* Begin PBXFileReference section */
 		CEA708B1294C770D00C7B086 /* Algorithm */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Algorithm; sourceTree = BUILT_PRODUCTS_DIR; };
 		CECAC37E29A592C000FF8511 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		F36D51352D26323700B7AB27 /* libDataStructures.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDataStructures.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F36D51352D26323700B7AB27 /* libLinkedList.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLinkedList.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36D51B22D2632FE00B7AB27 /* libBackjoon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBackjoon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36D51BE2D26333100B7AB27 /* libPrgrammers.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPrgrammers.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		F36D577B2D2CBEA300B7AB27 /* DataStructures.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = DataStructures.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		F36D577B2D2CBEA300B7AB27 /* LinkedList.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LinkedList.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -163,7 +163,7 @@
 			membershipExceptions = (
 				SpaceComplexity/printSorted.swift,
 			);
-			target = F36D51342D26323700B7AB27 /* DataStructures */;
+			target = F36D51342D26323700B7AB27 /* LinkedList */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -208,7 +208,7 @@
 		CEA708A8294C770D00C7B086 = {
 			isa = PBXGroup;
 			children = (
-				F36D577B2D2CBEA300B7AB27 /* DataStructures.playground */,
+				F36D577B2D2CBEA300B7AB27 /* LinkedList.playground */,
 				F36D55222D2BB11000B7AB27 /* BigO */,
 				CECAC37E29A592C000FF8511 /* main.swift */,
 				F36D51B32D2632FF00B7AB27 /* Backjoon */,
@@ -221,7 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				CEA708B1294C770D00C7B086 /* Algorithm */,
-				F36D51352D26323700B7AB27 /* libDataStructures.a */,
+				F36D51352D26323700B7AB27 /* libLinkedList.a */,
 				F36D51B22D2632FE00B7AB27 /* libBackjoon.a */,
 				F36D51BE2D26333100B7AB27 /* libPrgrammers.a */,
 			);
@@ -251,9 +251,9 @@
 			productReference = CEA708B1294C770D00C7B086 /* Algorithm */;
 			productType = "com.apple.product-type.tool";
 		};
-		F36D51342D26323700B7AB27 /* DataStructures */ = {
+		F36D51342D26323700B7AB27 /* LinkedList */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F36D513B2D26323700B7AB27 /* Build configuration list for PBXNativeTarget "DataStructures" */;
+			buildConfigurationList = F36D513B2D26323700B7AB27 /* Build configuration list for PBXNativeTarget "LinkedList" */;
 			buildPhases = (
 				F36D51312D26323700B7AB27 /* Sources */,
 				F36D51322D26323700B7AB27 /* Frameworks */,
@@ -263,11 +263,11 @@
 			);
 			dependencies = (
 			);
-			name = DataStructures;
+			name = LinkedList;
 			packageProductDependencies = (
 			);
 			productName = "Data Structures";
-			productReference = F36D51352D26323700B7AB27 /* libDataStructures.a */;
+			productReference = F36D51352D26323700B7AB27 /* libLinkedList.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		F36D51B12D2632FE00B7AB27 /* Backjoon */ = {
@@ -352,7 +352,7 @@
 			projectRoot = "";
 			targets = (
 				CEA708B0294C770D00C7B086 /* Algorithm */,
-				F36D51342D26323700B7AB27 /* DataStructures */,
+				F36D51342D26323700B7AB27 /* LinkedList */,
 				F36D51B12D2632FE00B7AB27 /* Backjoon */,
 				F36D51BD2D26333100B7AB27 /* Prgrammers */,
 			);
@@ -674,7 +674,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F36D513B2D26323700B7AB27 /* Build configuration list for PBXNativeTarget "DataStructures" */ = {
+		F36D513B2D26323700B7AB27 /* Build configuration list for PBXNativeTarget "LinkedList" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F36D51392D26323700B7AB27 /* Debug */,
