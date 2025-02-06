@@ -16,25 +16,25 @@ import Foundation
 /// 요소값과 같지 않다면 한 칸씩 이동하기 (prev = current; current = current?.next)
 /// current 값이 존재할 때 까지 반복하는 while 문이 종료되면 tail 값을 prev로 업데이트 하고 종료
 /// 한 개씩 훑으며 내려가므로 O(n)
-extension LinkedList<T> {
-  func removeAll(value: T) {
-    while let head = head, head.value == value {
-      head = head?.next
-    }
-    
-    var prev = head
-    var current = head?.next
-    while let currentNode = current {
-      guard currentNode.value != value else {
-        prev?.next = currentNode.next
-        current = prev?.next
-        continue
-      }
-      prev = current
-      current = current?.next
-    }
-    
-    tail = prev
-  }
-}
+//extension LinkedList<T> {
+//  func removeAll(value: T) {
+//    while let head = head, head.value == value {
+//      head = head?.next
+//    }
+//    
+//    var prev = head
+//    var current = head?.next
+//    while let currentNode = current {
+//      guard currentNode.value != value else {
+//        prev?.next = currentNode.next
+//        current = prev?.next
+//        continue
+//      }
+//      prev = current
+//      current = current?.next
+//    }
+//    
+//    tail = prev
+//  }
+//}
 
