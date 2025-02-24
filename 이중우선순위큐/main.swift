@@ -153,20 +153,20 @@ func solution_이중우선순위큐_힙(_ operations:[String]) -> [Int] {
             validNum[num, default: 0] += 1
         } else if input[1] == "1" { // 최댓값 삭제
             while let max = maxHeap.remove() {
-                guard validNum[max, default: 0] >= 0 else { continue } // 애초에 가능한 숫자가 아니면 튕겨 
+                guard validNum[max, default: 0] > 0 else { continue } // 애초에 가능한 숫자가 아니면 튕겨
                 validNum[max, default: 0] -= 1
+                break
             }
         } else if input[1] == "-1" { // 최솟값 삭제
             while let min = minHeap.remove() {
-                guard validNum[min, default: 0] >= 0 else { continue }
+                guard validNum[min, default: 0] > 0 else { continue }
                 validNum[min, default: 0] -= 1
+                break
             }
         }
     }
 
     var (maxResult, minResult) = (0, 0)
-    
-    print(maxHeap, minHeap, validNum)
     
     while let max = maxHeap.remove() {
         guard validNum[max]! > 0 else { continue }
